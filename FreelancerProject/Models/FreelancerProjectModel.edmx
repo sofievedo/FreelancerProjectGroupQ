@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FreelancerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Competence">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="CompetenceName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lastname" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="6" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Phonenumber" Type="varchar" MaxLength="15" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="LinkToLinkedIn" Type="varchar" MaxLength="100" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="WantsEmailNotification" Type="binary" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Customer_Freelancer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="FreelancerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="FreelancerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FreelancerId" Type="int" Nullable="false" />
+          <Property Name="School" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Degree" Type="varchar" MaxLength="50" />
+          <Property Name="Subject" Type="varchar" MaxLength="50" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Freelancer_Competence">
+          <Key>
+            <PropertyRef Name="FreelancerId" />
+            <PropertyRef Name="CompetenceId" />
+          </Key>
+          <Property Name="FreelancerId" Type="int" Nullable="false" />
+          <Property Name="CompetenceId" Type="int" Nullable="false" />
+          <Property Name="Ranking" Type="int" />
+        </EntityType>
+        <EntityType Name="Freelancer_Language">
+          <Key>
+            <PropertyRef Name="FreelancerId" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="FreelancerId" Type="int" Nullable="false" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FreelancerPerson">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lastname" Type="varchar" MaxLength="50" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Nationality" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="6" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Phonenumber" Type="varchar" MaxLength="15" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="LinkToLinkedIn" Type="varchar" MaxLength="100" />
+          <Property Name="LinkToGithub" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Languages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Language" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OtherInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FreelancerId" Type="int" Nullable="false" />
+          <Property Name="DriversLicence" Type="varchar" MaxLength="100" />
+          <Property Name="Languages" Type="varchar" MaxLength="100" />
+          <Property Name="CoreCompetences" Type="varchar" MaxLength="500" />
+          <Property Name="ProfileMessage" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Work">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FreelancerId" Type="int" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="WorkDescription" Type="text" />
+        </EntityType>
+        <Association Name="FK__Competenc__RoleI__5812160E">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Competence" Type="Self.Competence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Competence">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customer___Custo__5FB337D6">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Customer_Freelancer" Type="Self.Customer_Freelancer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer_Freelancer">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customer___Freel__60A75C0F">
+          <End Role="FreelancerPerson" Type="Self.FreelancerPerson" Multiplicity="1" />
+          <End Role="Customer_Freelancer" Type="Self.Customer_Freelancer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FreelancerPerson">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Customer_Freelancer">
+              <PropertyRef Name="FreelancerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Education__Freel__534D60F1">
+          <End Role="FreelancerPerson" Type="Self.FreelancerPerson" Multiplicity="1" />
+          <End Role="Education" Type="Self.Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FreelancerPerson">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Education">
+              <PropertyRef Name="FreelancerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Freelance__Compe__6754599E">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="1" />
+          <End Role="Freelancer_Competence" Type="Self.Freelancer_Competence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Freelancer_Competence">
+              <PropertyRef Name="CompetenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Freelance__Freel__66603565">
+          <End Role="FreelancerPerson" Type="Self.FreelancerPerson" Multiplicity="1" />
+          <End Role="Freelancer_Competence" Type="Self.Freelancer_Competence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FreelancerPerson">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Freelancer_Competence">
+              <PropertyRef Name="FreelancerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Freelance__Freel__6C190EBB">
+          <End Role="FreelancerPerson" Type="Self.FreelancerPerson" Multiplicity="1" />
+          <End Role="Freelancer_Language" Type="Self.Freelancer_Language" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FreelancerPerson">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Freelancer_Language">
+              <PropertyRef Name="FreelancerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Freelance__Langu__6D0D32F4">
+          <End Role="Languages" Type="Self.Languages" Multiplicity="1" />
+          <End Role="Freelancer_Language" Type="Self.Freelancer_Language" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Freelancer_Language">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OtherInfo__Freel__5AEE82B9">
+          <End Role="FreelancerPerson" Type="Self.FreelancerPerson" Multiplicity="1" />
+          <End Role="OtherInfo" Type="Self.OtherInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FreelancerPerson">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OtherInfo">
+              <PropertyRef Name="FreelancerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Work__Freelancer__5441852A">
+          <End Role="FreelancerPerson" Type="Self.FreelancerPerson" Multiplicity="1" />
+          <End Role="Work" Type="Self.Work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FreelancerPerson">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Work">
+              <PropertyRef Name="FreelancerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FreelancerModelStoreContainer">
+          <EntitySet Name="Competence" EntityType="Self.Competence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer_Freelancer" EntityType="Self.Customer_Freelancer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Freelancer_Competence" EntityType="Self.Freelancer_Competence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Freelancer_Language" EntityType="Self.Freelancer_Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FreelancerPerson" EntityType="Self.FreelancerPerson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Languages" EntityType="Self.Languages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OtherInfo" EntityType="Self.OtherInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Work" EntityType="Self.Work" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Competenc__RoleI__5812160E" Association="Self.FK__Competenc__RoleI__5812160E">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Competence" EntitySet="Competence" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customer___Custo__5FB337D6" Association="Self.FK__Customer___Custo__5FB337D6">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Customer_Freelancer" EntitySet="Customer_Freelancer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customer___Freel__60A75C0F" Association="Self.FK__Customer___Freel__60A75C0F">
+            <End Role="FreelancerPerson" EntitySet="FreelancerPerson" />
+            <End Role="Customer_Freelancer" EntitySet="Customer_Freelancer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Education__Freel__534D60F1" Association="Self.FK__Education__Freel__534D60F1">
+            <End Role="FreelancerPerson" EntitySet="FreelancerPerson" />
+            <End Role="Education" EntitySet="Education" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Freelance__Compe__6754599E" Association="Self.FK__Freelance__Compe__6754599E">
+            <End Role="Competence" EntitySet="Competence" />
+            <End Role="Freelancer_Competence" EntitySet="Freelancer_Competence" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Freelance__Freel__66603565" Association="Self.FK__Freelance__Freel__66603565">
+            <End Role="FreelancerPerson" EntitySet="FreelancerPerson" />
+            <End Role="Freelancer_Competence" EntitySet="Freelancer_Competence" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Freelance__Freel__6C190EBB" Association="Self.FK__Freelance__Freel__6C190EBB">
+            <End Role="FreelancerPerson" EntitySet="FreelancerPerson" />
+            <End Role="Freelancer_Language" EntitySet="Freelancer_Language" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Freelance__Langu__6D0D32F4" Association="Self.FK__Freelance__Langu__6D0D32F4">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="Freelancer_Language" EntitySet="Freelancer_Language" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OtherInfo__Freel__5AEE82B9" Association="Self.FK__OtherInfo__Freel__5AEE82B9">
+            <End Role="FreelancerPerson" EntitySet="FreelancerPerson" />
+            <End Role="OtherInfo" EntitySet="OtherInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Work__Freelancer__5441852A" Association="Self.FK__Work__Freelancer__5441852A">
+            <End Role="FreelancerPerson" EntitySet="FreelancerPerson" />
+            <End Role="Work" EntitySet="Work" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FreelancerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Competence">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="CompetenceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__Competenc__RoleI__5812160E" FromRole="Competence" ToRole="Role" />
+          <NavigationProperty Name="Freelancer_Competence" Relationship="Self.FK__Freelance__Compe__6754599E" FromRole="Competence" ToRole="Freelancer_Competence" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phonenumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LinkToLinkedIn" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WantsEmailNotification" Type="Binary" MaxLength="1" FixedLength="true" />
+          <NavigationProperty Name="FreelancerPerson" Relationship="Self.Customer_Freelancer" FromRole="Customer" ToRole="FreelancerPerson" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FreelancerId" Type="Int32" Nullable="false" />
+          <Property Name="School" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="FreelancerPerson" Relationship="Self.FK__Education__Freel__534D60F1" FromRole="Education" ToRole="FreelancerPerson" />
+        </EntityType>
+        <EntityType Name="Freelancer_Competence">
+          <Key>
+            <PropertyRef Name="FreelancerId" />
+            <PropertyRef Name="CompetenceId" />
+          </Key>
+          <Property Name="FreelancerId" Type="Int32" Nullable="false" />
+          <Property Name="CompetenceId" Type="Int32" Nullable="false" />
+          <Property Name="Ranking" Type="Int32" />
+          <NavigationProperty Name="Competence" Relationship="Self.FK__Freelance__Compe__6754599E" FromRole="Freelancer_Competence" ToRole="Competence" />
+          <NavigationProperty Name="FreelancerPerson" Relationship="Self.FK__Freelance__Freel__66603565" FromRole="Freelancer_Competence" ToRole="FreelancerPerson" />
+        </EntityType>
+        <EntityType Name="FreelancerPerson">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phonenumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LinkToLinkedIn" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LinkToGithub" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Education" Relationship="Self.FK__Education__Freel__534D60F1" FromRole="FreelancerPerson" ToRole="Education" />
+          <NavigationProperty Name="Freelancer_Competence" Relationship="Self.FK__Freelance__Freel__66603565" FromRole="FreelancerPerson" ToRole="Freelancer_Competence" />
+          <NavigationProperty Name="OtherInfo" Relationship="Self.FK__OtherInfo__Freel__5AEE82B9" FromRole="FreelancerPerson" ToRole="OtherInfo" />
+          <NavigationProperty Name="Work" Relationship="Self.FK__Work__Freelancer__5441852A" FromRole="FreelancerPerson" ToRole="Work" />
+          <NavigationProperty Name="Customer" Relationship="Self.Customer_Freelancer" FromRole="FreelancerPerson" ToRole="Customer" />
+          <NavigationProperty Name="Languages" Relationship="Self.Freelancer_Language" FromRole="FreelancerPerson" ToRole="Languages" />
+        </EntityType>
+        <EntityType Name="Languages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FreelancerPerson" Relationship="Self.Freelancer_Language" FromRole="Languages" ToRole="FreelancerPerson" />
+        </EntityType>
+        <EntityType Name="OtherInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FreelancerId" Type="Int32" Nullable="false" />
+          <Property Name="DriversLicence" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Languages" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CoreCompetences" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FreelancerPerson" Relationship="Self.FK__OtherInfo__Freel__5AEE82B9" FromRole="OtherInfo" ToRole="FreelancerPerson" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Competence" Relationship="Self.FK__Competenc__RoleI__5812160E" FromRole="Role" ToRole="Competence" />
+        </EntityType>
+        <EntityType Name="Work">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FreelancerId" Type="Int32" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="WorkDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FreelancerPerson" Relationship="Self.FK__Work__Freelancer__5441852A" FromRole="Work" ToRole="FreelancerPerson" />
+        </EntityType>
+        <Association Name="FK__Competenc__RoleI__5812160E">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Competence" Type="Self.Competence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Competence">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Freelance__Compe__6754599E">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="1" />
+          <End Role="Freelancer_Competence" Type="Self.Freelancer_Competence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Freelancer_Competence">
+              <PropertyRef Name="CompetenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Education__Freel__534D60F1">
+          <End Role="FreelancerPerson" Type="Self.FreelancerPerson" Multiplicity="1" />
+          <End Role="Education" Type="Self.Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FreelancerPerson">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Education">
+              <PropertyRef Name="FreelancerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Freelance__Freel__66603565">
+          <End Role="FreelancerPerson" Type="Self.FreelancerPerson" Multiplicity="1" />
+          <End Role="Freelancer_Competence" Type="Self.Freelancer_Competence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FreelancerPerson">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Freelancer_Competence">
+              <PropertyRef Name="FreelancerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OtherInfo__Freel__5AEE82B9">
+          <End Role="FreelancerPerson" Type="Self.FreelancerPerson" Multiplicity="1" />
+          <End Role="OtherInfo" Type="Self.OtherInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FreelancerPerson">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OtherInfo">
+              <PropertyRef Name="FreelancerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Work__Freelancer__5441852A">
+          <End Role="FreelancerPerson" Type="Self.FreelancerPerson" Multiplicity="1" />
+          <End Role="Work" Type="Self.Work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FreelancerPerson">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Work">
+              <PropertyRef Name="FreelancerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Customer_Freelancer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <End Role="FreelancerPerson" Type="Self.FreelancerPerson" Multiplicity="*" />
+        </Association>
+        <Association Name="Freelancer_Language">
+          <End Role="FreelancerPerson" Type="Self.FreelancerPerson" Multiplicity="*" />
+          <End Role="Languages" Type="Self.Languages" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="FreelancerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Competence" EntityType="Self.Competence" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="Education" EntityType="Self.Education" />
+          <EntitySet Name="Freelancer_Competence" EntityType="Self.Freelancer_Competence" />
+          <EntitySet Name="FreelancerPerson" EntityType="Self.FreelancerPerson" />
+          <EntitySet Name="Languages" EntityType="Self.Languages" />
+          <EntitySet Name="OtherInfo" EntityType="Self.OtherInfo" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Work" EntityType="Self.Work" />
+          <AssociationSet Name="FK__Competenc__RoleI__5812160E" Association="Self.FK__Competenc__RoleI__5812160E">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Competence" EntitySet="Competence" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Freelance__Compe__6754599E" Association="Self.FK__Freelance__Compe__6754599E">
+            <End Role="Competence" EntitySet="Competence" />
+            <End Role="Freelancer_Competence" EntitySet="Freelancer_Competence" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Education__Freel__534D60F1" Association="Self.FK__Education__Freel__534D60F1">
+            <End Role="FreelancerPerson" EntitySet="FreelancerPerson" />
+            <End Role="Education" EntitySet="Education" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Freelance__Freel__66603565" Association="Self.FK__Freelance__Freel__66603565">
+            <End Role="FreelancerPerson" EntitySet="FreelancerPerson" />
+            <End Role="Freelancer_Competence" EntitySet="Freelancer_Competence" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OtherInfo__Freel__5AEE82B9" Association="Self.FK__OtherInfo__Freel__5AEE82B9">
+            <End Role="FreelancerPerson" EntitySet="FreelancerPerson" />
+            <End Role="OtherInfo" EntitySet="OtherInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Work__Freelancer__5441852A" Association="Self.FK__Work__Freelancer__5441852A">
+            <End Role="FreelancerPerson" EntitySet="FreelancerPerson" />
+            <End Role="Work" EntitySet="Work" />
+          </AssociationSet>
+          <AssociationSet Name="Customer_Freelancer" Association="Self.Customer_Freelancer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="FreelancerPerson" EntitySet="FreelancerPerson" />
+          </AssociationSet>
+          <AssociationSet Name="Freelancer_Language" Association="Self.Freelancer_Language">
+            <End Role="FreelancerPerson" EntitySet="FreelancerPerson" />
+            <End Role="Languages" EntitySet="Languages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FreelancerModelStoreContainer" CdmEntityContainer="FreelancerEntities">
+          <EntitySetMapping Name="Competence">
+            <EntityTypeMapping TypeName="FreelancerModel.Competence">
+              <MappingFragment StoreEntitySet="Competence">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="CompetenceName" ColumnName="CompetenceName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="FreelancerModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Phonenumber" ColumnName="Phonenumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LinkToLinkedIn" ColumnName="LinkToLinkedIn" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="WantsEmailNotification" ColumnName="WantsEmailNotification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Education">
+            <EntityTypeMapping TypeName="FreelancerModel.Education">
+              <MappingFragment StoreEntitySet="Education">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FreelancerId" ColumnName="FreelancerId" />
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Freelancer_Competence">
+            <EntityTypeMapping TypeName="FreelancerModel.Freelancer_Competence">
+              <MappingFragment StoreEntitySet="Freelancer_Competence">
+                <ScalarProperty Name="FreelancerId" ColumnName="FreelancerId" />
+                <ScalarProperty Name="CompetenceId" ColumnName="CompetenceId" />
+                <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FreelancerPerson">
+            <EntityTypeMapping TypeName="FreelancerModel.FreelancerPerson">
+              <MappingFragment StoreEntitySet="FreelancerPerson">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Phonenumber" ColumnName="Phonenumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LinkToLinkedIn" ColumnName="LinkToLinkedIn" />
+                <ScalarProperty Name="LinkToGithub" ColumnName="LinkToGithub" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="FreelancerModel.Languages">
+              <MappingFragment StoreEntitySet="Languages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OtherInfo">
+            <EntityTypeMapping TypeName="FreelancerModel.OtherInfo">
+              <MappingFragment StoreEntitySet="OtherInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FreelancerId" ColumnName="FreelancerId" />
+                <ScalarProperty Name="DriversLicence" ColumnName="DriversLicence" />
+                <ScalarProperty Name="Languages" ColumnName="Languages" />
+                <ScalarProperty Name="CoreCompetences" ColumnName="CoreCompetences" />
+                <ScalarProperty Name="ProfileMessage" ColumnName="ProfileMessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="FreelancerModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Work">
+            <EntityTypeMapping TypeName="FreelancerModel.Work">
+              <MappingFragment StoreEntitySet="Work">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FreelancerId" ColumnName="FreelancerId" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="WorkDescription" ColumnName="WorkDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Customer_Freelancer" TypeName="FreelancerModel.Customer_Freelancer" StoreEntitySet="Customer_Freelancer">
+            <EndProperty Name="Customer">
+              <ScalarProperty Name="Id" ColumnName="CustomerId" />
+            </EndProperty>
+            <EndProperty Name="FreelancerPerson">
+              <ScalarProperty Name="Id" ColumnName="FreelancerId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Freelancer_Language" TypeName="FreelancerModel.Freelancer_Language" StoreEntitySet="Freelancer_Language">
+            <EndProperty Name="FreelancerPerson">
+              <ScalarProperty Name="Id" ColumnName="FreelancerId" />
+            </EndProperty>
+            <EndProperty Name="Languages">
+              <ScalarProperty Name="Id" ColumnName="LanguageId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
