@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a5b3f8653593442c924b188d86edb710" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="FreelancerModel.Competence" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelancerModel.Customer" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelancerModel.Education" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelancerModel.Freelancer_Competence" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelancerModel.FreelancerPerson" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelancerModel.Languages" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelancerModel.OtherInfo" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelancerModel.Role" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelancerModel.Work" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
+        <AssociationConnector Association="FreelancerModel.FK__Competenc__RoleI__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="FreelancerModel.FK__Freelance__Compe__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="FreelancerModel.FK__Education__Freel__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="FreelancerModel.FK__Freelance__Freel__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="FreelancerModel.FK__OtherInfo__Freel__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="FreelancerModel.FK__Work__Freelancer__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="FreelancerModel.Customer_Freelancer" ManuallyRouted="false" />
+        <AssociationConnector Association="FreelancerModel.Freelancer_Language" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
