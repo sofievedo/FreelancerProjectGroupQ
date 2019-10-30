@@ -135,6 +135,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\OtherInfoesController.cs" />
+    <Compile Include="Controllers\ProfileCustomerController.cs" />
+    <Compile Include="Controllers\ProfileFreelancerController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\WorksController.cs" />
     <Compile Include="Global.asax.cs">
@@ -176,6 +178,7 @@
     <Compile Include="Models\OtherInfo.cs">
       <DependentUpon>FreelancerProjectModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfileFreelancer.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>FreelancerProjectModel.tt</DependentUpon>
     </Compile>
@@ -260,10 +263,12 @@
     <Content Include="Views\Works\Details.cshtml" />
     <Content Include="Views\Works\Edit.cshtml" />
     <Content Include="Views\Works\Index.cshtml" />
+    <Content Include="Views\ProfileFreelancer\ProfileFreelancer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Languages\" />
+    <Folder Include="Views\ProfileCustomer\" />
     <Folder Include="Views\Role\" />
   </ItemGroup>
   <ItemGroup>
