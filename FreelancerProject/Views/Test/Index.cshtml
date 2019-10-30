@@ -1,0 +1,47 @@
+﻿@model FreelancerProject.ViewModels.Test
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.Firstname)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Freelancer.Firstname)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.Education)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Educations)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.Work)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Works)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Educations)
+</dt>
+<dd>
+    @foreach (var item in Model.Educations)
+    {
+        @Html.Display(item.Id.ToString())
+        @Html.Display(item.School)
+        @Html.Display(item.StartDate.ToString())
+    }
+</dd>
+
+<p>
+
+</p>
+

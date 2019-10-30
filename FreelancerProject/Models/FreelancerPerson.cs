@@ -11,7 +11,8 @@ namespace FreelancerProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class FreelancerPerson
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,6 +27,8 @@ namespace FreelancerProject.Models
         }
     
         public int Id { get; set; }
+
+        [DisplayName("Förnamn")]
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public Nullable<System.DateTime> Birthday { get; set; }
