@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FreelancerProject.Models;
+using FreelancerProject.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,16 +10,21 @@ namespace FreelancerProject.Controllers
 {
     public class CvController : Controller
     {
+
+        private FreelancerEntities db = new FreelancerEntities();
+
         // GET: Cv
         public ActionResult Index()
         {
+            CV cv = new CV(1);
             return View();
         }
 
         // GET: Cv/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            CV cv = new CV(1);
+            return View(cv);
         }
 
         // GET: Cv/Create
