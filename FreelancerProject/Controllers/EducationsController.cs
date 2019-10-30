@@ -37,9 +37,9 @@ namespace FreelancerProject.Controllers
         }
 
         // GET: Educations/Create
-        public ActionResult Create()
+        public ActionResult Create(int? freelancerID)
         {
-            ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname");
+            ViewBag.FreelancerId = freelancerID;
             return View();
         }
 
