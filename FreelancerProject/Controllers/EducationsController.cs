@@ -10,107 +10,112 @@ using FreelancerProject.Models;
 
 namespace FreelancerProject.Controllers
 {
-    public class FreelancerPersonsController : Controller
+    public class EducationsController : Controller
     {
         private FreelancerEntities db = new FreelancerEntities();
 
-        // GET: FreelancerPersons
+        // GET: Educations
         public ActionResult Index()
         {
-            return View(db.FreelancerPerson.ToList());
+            var education = db.Education.Include(e => e.FreelancerPerson);
+            return View(education.ToList());
         }
 
-        // GET: FreelancerPersons/Details/5
-        public ActionResult Details(int? id) 
+        // GET: Educations/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FreelancerPerson freelancerPerson = db.FreelancerPerson.Find(id);
-            if (freelancerPerson == null)
+            Education education = db.Education.Find(id);
+            if (education == null)
             {
                 return HttpNotFound();
             }
-            return View(freelancerPerson);
+            return View(education);
         }
 
-        // GET: FreelancerPersons/Create
+        // GET: Educations/Create
         public ActionResult Create()
         {
+            ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname");
             return View();
         }
 
-        // POST: FreelancerPersons/Create
+        // POST: Educations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Firstname,Lastname,Birthday,Nationality,Address,ZipCode,City,Phonenumber,Email,LinkToLinkedIn,LinkToGithub")] FreelancerPerson freelancerPerson)
+        public ActionResult Create([Bind(Include = "Id,FreelancerId,School,Degree,Subject,StartDate,EndDate")] Education education)
         {
             if (ModelState.IsValid)
             {
-                db.FreelancerPerson.Add(freelancerPerson);
+                db.Education.Add(education);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(freelancerPerson);
+            ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname", education.FreelancerId);
+            return View(education);
         }
 
-        // GET: FreelancerPersons/Edit/5
+        // GET: Educations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FreelancerPerson freelancerPerson = db.FreelancerPerson.Find(id);
-            if (freelancerPerson == null)
+            Education education = db.Education.Find(id);
+            if (education == null)
             {
                 return HttpNotFound();
             }
-            return View(freelancerPerson);
+            ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname", education.FreelancerId);
+            return View(education);
         }
 
-        // POST: FreelancerPersons/Edit/5
+        // POST: Educations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Firstname,Lastname,Birthday,Nationality,Address,ZipCode,City,Phonenumber,Email,LinkToLinkedIn,LinkToGithub")] FreelancerPerson freelancerPerson)
+        public ActionResult Edit([Bind(Include = "Id,FreelancerId,School,Degree,Subject,StartDate,EndDate")] Education education)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(freelancerPerson).State = EntityState.Modified;
+                db.Entry(education).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(freelancerPerson);
+            ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname", education.FreelancerId);
+            return View(education);
         }
 
-        // GET: FreelancerPersons/Delete/5
+        // GET: Educations/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FreelancerPerson freelancerPerson = db.FreelancerPerson.Find(id);
-            if (freelancerPerson == null)
+            Education education = db.Education.Find(id);
+            if (education == null)
             {
                 return HttpNotFound();
             }
-            return View(freelancerPerson);
+            return View(education);
         }
 
-        // POST: FreelancerPersons/Delete/5
+        // POST: Educations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            FreelancerPerson freelancerPerson = db.FreelancerPerson.Find(id);
-            db.FreelancerPerson.Remove(freelancerPerson);
+            Education education = db.Education.Find(id);
+            db.Education.Remove(education);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
