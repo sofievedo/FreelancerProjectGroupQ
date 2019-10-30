@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CompetencesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\CvController.cs" />
     <Compile Include="Controllers\EducationsController.cs" />
     <Compile Include="Controllers\FreelancerPersonsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -263,6 +264,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Cv\" />
     <Folder Include="Views\Languages\" />
     <Folder Include="Views\Role\" />
   </ItemGroup>
