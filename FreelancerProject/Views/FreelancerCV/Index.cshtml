@@ -8,39 +8,40 @@
 
 
 
-<dt>
-    @Html.DisplayNameFor(model => model.OtherInfo.ProfileMessage)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.OtherInfo.ProfileMessage)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.OtherInfo.DriversLicence)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.OtherInfo.DriversLicence)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.OtherInfo.CoreCompetences)
-</dt>
-
-<dd>
-    @Html.DisplayFor(model => model.OtherInfo.CoreCompetences)
-</dd>
-
-<dt>
-    @Html.DisplayNameFor(model => model.Languages)
+    <dt>
+        @Html.DisplayNameFor(model => model.OtherInfo.ProfileMessage)
     </dt>
-<ul>
-    @foreach (var item in Model.Languages)
-    {
-        <li>@item.Language</li>
-    }
-</ul>
+
+    <dd>
+        @Html.DisplayFor(model => model.OtherInfo.ProfileMessage)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.OtherInfo.DriversLicence)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.OtherInfo.DriversLicence)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.OtherInfo.CoreCompetences)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.OtherInfo.CoreCompetences)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Languages)
+    </dt>
+    <ul>
+        @foreach (var item in Model.Languages)
+        {
+            <li>@item.Language</li>
+        }
+    </ul>
+
 
 
 <h2>Tidigare utbildningar</h2>
