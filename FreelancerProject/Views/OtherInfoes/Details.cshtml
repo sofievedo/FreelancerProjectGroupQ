@@ -1,0 +1,58 @@
+﻿@model FreelancerProject.Models.OtherInfo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OtherInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DriversLicence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DriversLicence)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Languages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Languages)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoreCompetences)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoreCompetences)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileMessage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfileMessage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FreelancerPerson.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FreelancerPerson.Firstname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
