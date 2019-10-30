@@ -70,10 +70,8 @@ namespace FreelancerProject.ViewModels
         public CV(int id)
         {
             this.Freelancer = db.FreelancerPerson.Find(id);
-            this.Educations = db.Education.Where(e => e.FreelancerId == id).ToList();
-            this.Works = db.Work.Where(w => w.FreelancerId == id).ToList();
-            this.Freelancer_Competences = db.Freelancer_Competence.Where(f => f.FreelancerId == id).ToList();
-            this.OtherInfo = db.OtherInfo.Where(oi => oi.FreelancerId == id).FirstOrDefault();
+
+
         }
 
 
