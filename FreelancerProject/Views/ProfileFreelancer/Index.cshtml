@@ -3,7 +3,43 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<br>
+<br>
 
-<p>@Model.Firstname</p>
+<h2>@Model.Firstname @Model.Lastname</h2>
+<br>
+<img id="people-img" src="Content/bilder/images.png">
 
+<p> @Model.Address</p>
+<br>
+<p> @Model.Phonenumber</p>
+<br>
+<p> @Model.Email</p>
+<p> @Model.LinkToGithub</p>
+<p> @Model.LinkToLinkedIn</p>
+<br>
+<br>
+<b><p>About me</p></b>
+<br>
+<br>
+<br>
+<div>@Html.ActionLink("Edit resume", "Index", "FreelancerCV", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" }) </div>
+<br>
+
+<div>@Html.ActionLink("Edit profile", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</div>
+
+<canvas id="DemoCanvas" width="400" height="400"></canvas>
+<script>
+var canvas = document.getElementById('DemoCanvas');
+ if (canvas.getContext)
+  {
+    var context = canvas.getContext("2d");
+	context.beginPath();
+	context.moveTo(100, 10);
+	context.lineTo(100, 200);
+	context.lineWidth = 5;
+	// set line color
+	context.strokeStyle = '#808000';
+	context.stroke();
+  }
+</script>  

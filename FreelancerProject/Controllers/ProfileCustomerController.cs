@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FreelancerProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,16 @@ namespace FreelancerProject.Controllers
 {
     public class ProfileCustomerController : Controller
     {
-        // GET: ProfileCustomer
+
+        private FreelancerEntities db = new FreelancerEntities();
+        // GET: ProfileFreelancer
         public ActionResult Index()
         {
-            return View();
+
+            var customer = db.Customer.Find(1);
+
+            return View(customer);
         }
+
     }
 }
