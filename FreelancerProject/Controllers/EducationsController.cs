@@ -37,9 +37,10 @@ namespace FreelancerProject.Controllers
         }
 
         // GET: Educations/Create
-        public ActionResult Create(int? freelancerID)
+        public ActionResult Create(int? freelancerId)
         {
-            ViewBag.FreelancerId = freelancerID;
+            //TODO: lägg till vad som händer om int är null. 
+            ViewBag.FreelancerId = freelancerId;
             return View();
         }
 
@@ -48,13 +49,14 @@ namespace FreelancerProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FreelancerId,School,Degree,Subject,StartDate,EndDate")] Education education)
+        public ActionResult Create([Bind(Include = "FreelancerId,School,Degree,Subject,StartDate,EndDate")] Education education)
         {
             if (ModelState.IsValid)
             {
+                //TODO: Lägg till logik så slutdatum ej kan vara innan slutdatum
                 db.Education.Add(education);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "FreelancerCV", new { education.FreelancerId });
             }
 
             ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname", education.FreelancerId);
