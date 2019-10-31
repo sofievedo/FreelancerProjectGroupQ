@@ -20,6 +20,8 @@ namespace FreelancerProject.Models
         public string Languages { get; set; }
         public string CoreCompetences { get; set; }
         public string ProfileMessage { get; set; }
+
+        public string TestText { get; set; }
     
         public virtual FreelancerPerson FreelancerPerson { get; set; }
     }
