@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FreelancerProject.ViewModels;
+using FreelancerProject.Controllers;
 
 namespace FreelancerProject.Controllers
 {
@@ -20,5 +21,13 @@ namespace FreelancerProject.Controllers
 
             return View(freelancer);
         }
+
+        public ActionResult AddEducation(int? freelancerId)
+        {
+            EducationsController educationsController = new EducationsController();
+            return RedirectToAction("Create", "Educations", freelancerId);
+        }
+
+
     }
 }

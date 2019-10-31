@@ -30,6 +30,7 @@ namespace FreelancerProject.Models
 
         [DisplayName("Förnamn")]
         public string Firstname { get; set; }
+        [DisplayName("Efternamn")]
         public string Lastname { get; set; }
         public Nullable<System.DateTime> Birthday { get; set; }
         public string Nationality { get; set; }
