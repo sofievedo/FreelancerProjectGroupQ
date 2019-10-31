@@ -37,24 +37,23 @@ namespace FreelancerProject.Controllers
         }
 
         // GET: Works/Create
-        public ActionResult Create()
+        public ActionResult Create(int? freelancerId)
         {
-            ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname");
+            ViewBag.FreelancerId = freelancerId;
             return View();
         }
 
         // POST: Works/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FreelancerId,Role,Company,StartDate,EndDate,WorkDescription")] Work work)
+        public ActionResult Create([Bind(Include = "FreelancerId,Role,Company,StartDate,EndDate,WorkDescription")] Work work)
         {
             if (ModelState.IsValid)
             {
                 db.Work.Add(work);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "FreelancerCV", new { work.FreelancerId });
             }
 
             ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname", work.FreelancerId);

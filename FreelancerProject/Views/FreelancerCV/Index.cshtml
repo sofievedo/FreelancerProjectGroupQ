@@ -46,7 +46,7 @@
 
 <h2>Tidigare utbildningar</h2>
 
-@Html.ActionLink("Lägg till utbildning", "AddEducation", new { freelancerId = Model.Freelancer.Id }) 
+@Html.ActionLink("Lägg till utbildning", "AddEducation", new { freelancerId = Model.Freelancer.Id })
 <br />
 
 <table class="table">
@@ -101,6 +101,8 @@
 
 <hr />
 <h2>Tidigare arbeten</h2>
+@Html.ActionLink("Lägg till arbete", "AddWork", new { freelancerId = Model.Freelancer.Id })
+
 <table class="table">
     <tr>
         <th>
