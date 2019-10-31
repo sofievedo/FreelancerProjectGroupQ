@@ -18,7 +18,8 @@ namespace FreelancerProject.Controllers
         {
 
             var freelancer = db.FreelancerPerson.Find(1);
-            return View();
+
+            return View(freelancer);
         }
 
       
