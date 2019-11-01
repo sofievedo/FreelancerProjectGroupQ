@@ -1,0 +1,49 @@
+﻿@model FreelancerProject.Models.FreelancerPerson
+    @{
+        ViewBag.Title = "Index";
+    }
+    <br>
+    <br>
+
+    <h2>@Model.Firstname @Model.Lastname</h2>
+    <br>
+    <img id="people-img" src="Content/bilder/images.png">
+
+    <p> @Model.Address</p>
+    <br>
+    <p> @Model.Phonenumber</p>
+    <br>
+    <p> @Model.Email</p>
+    <li> @Model.LinkToGithub</li>
+    <li> @Model.LinkToLinkedIn</p></li>
+    <br>
+    <br>
+    <b><p>About me</p></b>
+    <br>
+    <br>
+    <br>
+
+    <button type="button" onclick="PopupResume();" class="btn btn-primary">View resume</button>
+
+    <script type="text/javascript">
+
+        PopupResume = function () {
+            window.open('/ViewforResume/Index', "PopupWindow", 'width=700px,height=700px,top=150,left=250');
+        }
+
+    </script>
+    @*<canvas id="DemoCanvas" width="400" height="400"></canvas>
+        <script>
+        var canvas = document.getElementById('DemoCanvas');
+         if (canvas.getContext)
+          {
+            var context = canvas.getContext("2d");
+            context.beginPath();
+            context.moveTo(100, 10);
+            context.lineTo(100, 200);
+            context.lineWidth = 5;
+            // set line color
+            context.strokeStyle = '#808000';
+            context.stroke();
+          }
+        </script>*@
