@@ -140,6 +140,8 @@
     <Compile Include="Controllers\ProfileCustomerController.cs" />
     <Compile Include="Controllers\ProfileFreelancerController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\ViewforProfileController.cs" />
+    <Compile Include="Controllers\ViewforResumeController.cs" />
     <Compile Include="Controllers\WorksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -273,6 +275,8 @@
     <Content Include="Views\ProfileFreelancer\Index.cshtml" />
     <Content Include="Views\ProfileCustomer\Index.cshtml" />
     <Content Include="Views\Freelancer_Competence\Index.cshtml" />
+    <Content Include="Views\ViewforProfile\Index.cshtml" />
+    <Content Include="Views\ViewforResume\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
