@@ -47,6 +47,8 @@ namespace FreelancerProject.ViewModels
 
 
 
+
+
         public FreelancerCVViewmodel(int id = 1) //TODO: Ta bort hårdkodning
         {
             Freelancer = db.FreelancerPerson.Find(id);

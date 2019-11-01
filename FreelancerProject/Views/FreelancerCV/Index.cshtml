@@ -32,6 +32,9 @@
     @Html.DisplayFor(model => model.OtherInfo.CoreCompetences)
 </dd>
 
+
+
+
 <dt>
     @Html.DisplayNameFor(model => model.Languages)
 </dt>
@@ -42,6 +45,19 @@
     }
 </ul>
 
+
+<h2>Kompetenser</h2>
+@Html.ActionLink("Lägg till kompetens", "AddEducation", new { freelancerId = Model.Freelancer.Id })
+
+
+<ul>
+    @foreach (var item in Model.Freelancer.Freelancer_Competence)
+    {
+        <li>
+            @item.Competence.CompetenceName - @item.Ranking
+        </li>
+    }
+</ul>
 
 
 <h2>Tidigare utbildningar</h2>
