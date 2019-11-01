@@ -11,7 +11,8 @@ namespace FreelancerProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,15 +22,25 @@ namespace FreelancerProject.Models
         }
     
         public int Id { get; set; }
+        [DisplayName("Förnamn")]
         public string Firstname { get; set; }
+        [DisplayName("Efternamn")]
         public string Lastname { get; set; }
+        [DisplayName("Gatuadress")]
         public string Address { get; set; }
+        [DisplayName("Postnummer")]
         public string ZipCode { get; set; }
+        [DisplayName("Ort")]
         public string City { get; set; }
+        [DisplayName("Telefonnummer")]
         public string Phonenumber { get; set; }
+        [DisplayName("Mailadress")]
         public string Email { get; set; }
+        [DisplayName("Linked Id")]
         public string LinkToLinkedIn { get; set; }
+        [DisplayName("Företag")]
         public string Company { get; set; }
+        [DisplayName("Skicka e-postaviseringar")]
         public byte[] WantsEmailNotification { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

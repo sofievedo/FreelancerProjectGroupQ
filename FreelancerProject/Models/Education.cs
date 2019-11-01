@@ -11,15 +11,21 @@ namespace FreelancerProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Education
     {
         public int Id { get; set; }
         public int FreelancerId { get; set; }
+        [DisplayName("Skola")]
         public string School { get; set; }
+        [DisplayName("Examen")]
         public string Degree { get; set; }
+        [DisplayName("Ämne")]
         public string Subject { get; set; }
+        [DisplayName("Startdatum")]
         public System.DateTime StartDate { get; set; }
+        [DisplayName("Slutdatm")]
         public Nullable<System.DateTime> EndDate { get; set; }
     
         public virtual FreelancerPerson FreelancerPerson { get; set; }

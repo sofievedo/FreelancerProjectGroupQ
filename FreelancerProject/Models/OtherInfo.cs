@@ -11,14 +11,19 @@ namespace FreelancerProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class OtherInfo
     {
         public int Id { get; set; }
         public int FreelancerId { get; set; }
+        [DisplayName("Innehar körtkortstyper")]
         public string DriversLicence { get; set; }
+        [DisplayName("Språk")]
         public string Languages { get; set; }
+        [DisplayName("Kärnförmågor")]
         public string CoreCompetences { get; set; }
+        [DisplayName("Min profil")]
         public string ProfileMessage { get; set; }
 
         public string TestText { get; set; }

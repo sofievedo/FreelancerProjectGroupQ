@@ -20,13 +20,13 @@
         @Html.HiddenFor(model => model.FreelancerId, new { Value = Model.FreelancerId })
 
         <div class="form-group">
-            @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, "Välj", new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, "Välj roll", new { @class = "form-control" })
         </div>
         <div class="form-group">
-            @Html.DropDownListFor(model => model.CompetenceId, new SelectList(" "), "Välj", new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.CompetenceId, new SelectList(" "), "Välj kompetens", new { @class = "form-control" })
         </div>
         <div class="form-group">
-            @Html.DropDownListFor(model => model.Ranking, ViewBag.Ranking as SelectList, "Välj", new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.Ranking, ViewBag.Ranking as SelectList, "Välj ranking", new { @class = "form-control" })
         </div>
         <div class="form-group">
             @if (Model.ExceptionMessage != null)

@@ -32,14 +32,23 @@ namespace FreelancerProject.Models
         public string Firstname { get; set; }
         [DisplayName("Efternamn")]
         public string Lastname { get; set; }
+        [DisplayName("Födelsedatum")]
         public Nullable<System.DateTime> Birthday { get; set; }
+        [DisplayName("Nationalitet")]
         public string Nationality { get; set; }
+        [DisplayName("Gatuadress")]
         public string Address { get; set; }
+        [DisplayName("Postnummer")]
         public string ZipCode { get; set; }
+        [DisplayName("Ort")]
         public string City { get; set; }
+        [DisplayName("Telefonnummer")]
         public string Phonenumber { get; set; }
+        [DisplayName("Mailadress")]
         public string Email { get; set; }
+        [DisplayName("Linked In")]
         public string LinkToLinkedIn { get; set; }
+        [DisplayName("Git Hub")]
         public string LinkToGithub { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
