@@ -8,33 +8,43 @@
 </h2>
 
 
-@using (Html.BeginForm("Create", "Freelancer_Competence", FormMethod.Get))
+@using (Html.BeginForm("Create", "Freelancer_Competence", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
+<div class="form-horizontal">
+    <hr />
 
-        <div>
-            @Html.HiddenFor(model => model.Freelancer_Competence.FreelancerId, new { Value = ViewBag.FreelancerId })
+    <div>
 
-            <div class="form-group">
-                @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, "Välj", new { @class = "form-control" })
-            </div>
-            <div class="form-group">
-                @Html.DropDownListFor(model => model.CompetenceId, new SelectList(" "), "Välj", new { @class = "form-control" })
-            </div>
-            <div class="form-group">
-                @Html.DropDownListFor(model => model.Ranking, ViewBag.Ranking as SelectList, "Välj", new { @class = "form-control" })
-            </div>
+        @Html.HiddenFor(model => model.FreelancerId, new { Value = Model.FreelancerId })
 
+        <div class="form-group">
+            @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, "Välj", new { @class = "form-control" })
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Lägg till" class="btn btn-default" />
-            </div>
+            @Html.DropDownListFor(model => model.CompetenceId, new SelectList(" "), "Välj", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.DropDownListFor(model => model.Ranking, ViewBag.Ranking as SelectList, "Välj", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @if (Model.ExceptionMessage != null)
+            {
+                <p> @Model.ExceptionMessage; </p>
+                @Html.LabelFor(model => model.ExceptionMessage)
+
+            }
+        </div class="form-group">
+
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lägg till" class="btn btn-default" />
         </div>
     </div>
+</div>
 }
 
 <div>
@@ -55,7 +65,7 @@
             $.get("/Freelancer_Competence/GetCompetenceList", { RoleId: $("#RoleId").val() }, function (competence) {
                 $("#CompetenceId").empty();
                 $.each(competence, function (index, row) {
-                    $("#CompetenceId").append("<option value='" + row.CompetenceId + "'>" + row.CompetenceName + "</option>");
+                    $("#CompetenceId").append("<option value='" + row.Id + "'>" + row.CompetenceName + "</option>");
                 });
             });
         })
