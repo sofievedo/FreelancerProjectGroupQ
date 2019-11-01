@@ -1,0 +1,63 @@
+﻿@model FreelancerProject.ViewModels.FreelancerCompetenceViewModel
+@{
+    ViewBag.Title = "Kompetenser";
+}
+
+<h2>
+    Lägg till kompetens
+</h2>
+
+
+@using (Html.BeginForm("Create", "Freelancer_Competence", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+
+        <div>
+            @Html.HiddenFor(model => model.Freelancer_Competence.FreelancerId, new { Value = ViewBag.FreelancerId })
+
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, "Välj", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.CompetenceId, new SelectList(" "), "Välj", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.Ranking, ViewBag.Ranking as SelectList, "Välj", new { @class = "form-control" })
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lägg till" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Tillbaka till CV", "Index", "FreelancerCV")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+@* Källa: https://www.youtube.com/watch?v=XVbRcLAmK4U & https://www.c-sharpcorner.com/UploadFile/4d9083/creating-simple-cascading-dropdownlist-in-mvc-4-using-razor/ *@
+<script>
+    //TODO: Lägga till detta scirptet i egen metod?
+    $(document).ready(function () {
+        $("#RoleId").change(function () {
+            $.get("/Freelancer_Competence/GetCompetenceList", { RoleId: $("#RoleId").val() }, function (competence) {
+                $("#CompetenceId").empty();
+                $.each(competence, function (index, row) {
+                    $("#CompetenceId").append("<option value='" + row.CompetenceId + "'>" + row.CompetenceName + "</option>");
+                });
+            });
+        })
+    });
+</script>

@@ -272,7 +272,7 @@
     <Content Include="Views\FreelancerCV\Index.cshtml" />
     <Content Include="Views\ProfileFreelancer\Index.cshtml" />
     <Content Include="Views\ProfileCustomer\Index.cshtml" />
-    <Content Include="Views\Freelancer_Competence\Index.cshtml" />
+    <Content Include="Views\Freelancer_Competence\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

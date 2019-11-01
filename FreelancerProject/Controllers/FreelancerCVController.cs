@@ -35,6 +35,13 @@ namespace FreelancerProject.Controllers
             return RedirectToAction("Create", "Works", new { freelancerId });
         }
 
+        public ActionResult AddCompetence(int? freelancerId)
+        {
+            //EducationsController educationsController = new EducationsController();
+            return RedirectToAction("Create", "Freelancer_Competence", new { freelancerId });
+        }
+
+
 
     }
 }
