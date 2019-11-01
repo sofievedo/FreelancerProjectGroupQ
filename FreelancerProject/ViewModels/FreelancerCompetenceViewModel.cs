@@ -15,19 +15,14 @@ namespace FreelancerProject.ViewModels
         public int RoleId { get; set; }
 
         public int CompetenceId { get; set; }
-        public int FreelancerId { get; set; }
+        public int? FreelancerId { get; set; }
+
+        public string ExceptionMessage { get; set; }
 
         private List<string> rankingList;
 
         public int Ranking { get; set; }
 
-        private int myVar;
-
-        public int MyProperty
-        {
-            get { return myVar; }
-            set { myVar = value; }
-        }
 
 
         public Freelancer_Competence Freelancer_Competence { get; set; }
@@ -35,13 +30,18 @@ namespace FreelancerProject.ViewModels
 
         public List<Freelancer_Competence> FreelancersCompetences { get; set; }
 
-        public FreelancerCompetenceViewModel(int id = 1) //TODO: Ta bort hårdkodning
+        public FreelancerCompetenceViewModel(int? id = 1) //TODO: Ta bort hårdkodning
         {
             Freelancer = db.FreelancerPerson.Find(id);
             FreelancersCompetences = db.Freelancer_Competence.Where(f => f.FreelancerId == id).ToList();
+            FreelancerId = id;
 
 
         }
 
+        public FreelancerCompetenceViewModel() 
+        {
+
+        }
     }
 }
