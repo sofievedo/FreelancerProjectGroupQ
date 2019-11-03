@@ -23,7 +23,7 @@ namespace FreelancerProject
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrapYeti.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }
     }
