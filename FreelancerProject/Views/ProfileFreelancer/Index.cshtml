@@ -5,40 +5,86 @@
 
 <br>
 <br>
+<div class="col-md-4">
+    <h2>@Model.Firstname @Model.Lastname</h2>
+    <br>
+    <img id="people-img" src="Content/bilder/images.png">
+    <br>
+    <br>
+    <br>
+    <b><p> @Model.Address</p></b>
+    <br>
+    <b><p> @Model.Phonenumber</p></b>
+    <br>
+    <b> <p> @Model.Email</p></b>
+    <br>
+    <li class=" länkarGL"> @Model.LinkToGithub</li>
+    <li class=" länkarGL"> @Model.LinkToLinkedIn</li>
+    <br>
+    <br>
+    <br>
 
-<h2>@Model.Firstname @Model.Lastname</h2>
-<br>
-<img id="people-img" src="Content/bilder/images.png">
+    <br>
+    <div>@Html.ActionLink("Edit resume", "Index", "FreelancerCV", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" }) </div>
+    <br>
 
-<p> @Model.Address</p>
-<br>
-<p> @Model.Phonenumber</p>
-<br>
-<p> @Model.Email</p>
-<li> @Model.LinkToGithub</li>
-<li> @Model.LinkToLinkedIn</li>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div>@Html.ActionLink("Edit resume", "Index", "FreelancerCV", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" }) </div>
-<br>
+    <div>@Html.ActionLink("Edit profile", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</div>
 
-<div>@Html.ActionLink("Edit profile", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</div>
 
-@*<canvas id="DemoCanvas" width="400" height="400"></canvas>
-<script>
-var canvas = document.getElementById('DemoCanvas');
- if (canvas.getContext)
-  {
-    var context = canvas.getContext("2d");
-	context.beginPath();
-	context.moveTo(100, 10);
-	context.lineTo(100, 200);
-	context.lineWidth = 5;
-	// set line color
-	context.strokeStyle = '#808000';
-	context.stroke();
-  }
-</script>*@  
+</div>
+<div class="col-md-4">
+    <canvas id="DemoCanvas" width="400" height="650"></canvas>
+    <script>
+        var canvas = document.getElementById('DemoCanvas');
+        if (canvas.getContext) {
+            var context = canvas.getContext("2d");
+            context.beginPath(10);
+            context.moveTo(100, 10);
+            context.lineTo(100, 1100);
+            context.lineWidth = 5;
+            context.strokeStyle = '#000000';
+            context.stroke();
+        }
+    </script>
+
+</div>
+<div class="col-md-4">
+    <div class="loremipsum">
+        <h3 id="About">About me</h3>
+        <br>
+        <br>
+        <p id="lorem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+            sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </p>
+    </div>
+</div>
+
