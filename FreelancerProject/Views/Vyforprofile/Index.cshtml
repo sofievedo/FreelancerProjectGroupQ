@@ -1,0 +1,96 @@
+﻿@model FreelancerProject.Models.FreelancerPerson
+@{
+    ViewBag.Title = "Index";
+}
+
+<br>
+<br>
+<div class="col-md-4">
+    <h2>@Model.Firstname @Model.Lastname</h2>
+    <br>
+    <img id="people-img" src="Content/bilder/images.png">
+    <br>
+    <br>
+    <br>
+    <b><p> @Model.Address</p></b>
+    <br>
+    <b><p> @Model.Phonenumber</p></b>
+    <br>
+    <b> <p> @Model.Email</p></b>
+    <br>
+    <li class=" länkarGL"> @Model.LinkToGithub</li>
+    <li class=" länkarGL"> @Model.LinkToLinkedIn</p></li>
+    <br>
+    <br>
+    <br>
+
+    <br>
+    <button type="button" onclick="PopupResume();" class="btn btn-primary">View resume</button>
+
+    <script type="text/javascript">
+
+        PopupResume = function () {
+            window.open('/FreelancerCV/Index', "PopupWindow", 'width=700px,height=700px,top=150,left=250');
+        }
+
+    </script>
+
+</div>
+<div class="col-md-4">
+    <canvas id="DemoCanvas" width="400" height="650"></canvas>
+    <script>
+        var canvas = document.getElementById('DemoCanvas');
+        if (canvas.getContext) {
+            var context = canvas.getContext("2d");
+            context.beginPath(10);
+            context.moveTo(100, 10);
+            context.lineTo(100, 1100);
+            context.lineWidth = 5;
+            context.strokeStyle = '#000000';
+            context.stroke();
+        }
+    </script>
+
+</div>
+<div class="col-md-4">
+    <div class="loremipsum">
+        <h3 id="About">About me</h3>
+        <br>
+        <br>
+        <p id="lorem">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+            sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </p>
+    </div>
+</div>
+
+
+

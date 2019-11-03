@@ -140,6 +140,7 @@
     <Compile Include="Controllers\ProfileCustomerController.cs" />
     <Compile Include="Controllers\ProfileFreelancerController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\VyforprofileController.cs" />
     <Compile Include="Controllers\WorksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -274,6 +275,7 @@
     <Content Include="Views\ProfileFreelancer\Index.cshtml" />
     <Content Include="Views\ProfileCustomer\Index.cshtml" />
     <Content Include="Views\Freelancer_Competence\Create.cshtml" />
+    <Content Include="Views\Vyforprofile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
