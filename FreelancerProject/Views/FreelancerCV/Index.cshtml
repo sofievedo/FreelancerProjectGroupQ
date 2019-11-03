@@ -85,22 +85,21 @@
 </dd>
 
 <dt>
-    @Html.DisplayNameFor(model => model.Freelancer.LinkToLinkedIn)
+    Jag finns på:
 </dt>
+@if (Model.Freelancer.LinkToGithub != null)
+{
+    <a href="http://@Model.Freelancer.LinkToGithub" style="color:purple"><i class="fab fa-github fa-4x"></i>Github</a>
 
-<dd>
-    @Html.DisplayFor(model => model.Freelancer.LinkToLinkedIn)
-</dd>
+    
+}
 
-<dt>
-    @Html.DisplayNameFor(model => model.Freelancer.LinkToGithub)
-</dt>
+@if (Model.Freelancer.LinkToLinkedIn != null)
+{
+    <a href="http://@Model.Freelancer.LinkToLinkedIn"><i class="fab fa-linkedin fa-4x"></i>Linked In   </a>
 
-<dd>
-    @Html.DisplayFor(model => model.Freelancer.LinkToGithub)
-</dd>
+}
 
-<i class="fab fa-github fa-4x"></i>
 
 
 
