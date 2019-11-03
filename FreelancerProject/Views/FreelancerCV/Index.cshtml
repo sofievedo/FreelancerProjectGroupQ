@@ -9,7 +9,8 @@
 <hr />
 <h3>Kontaktuppgifter</h3>
 
-@Html.ActionLink("Ändra kontaktuppgifter", "UpdateContacts", new { freelancerId = Model.Freelancer.Id })
+<button class="btn-primary" onclick="location.href='@Url.Action("UpdateContacts",  new {freelancerId = Model.Freelancer.Id})'"><i class="fas fa-edit"></i>  Ändra kontaktuppgifter</button>
+
 
 
 <dt>
@@ -33,7 +34,7 @@
 </dt>
 
 <dd>
-    @Html.DisplayFor(model => model.Freelancer.Birthday)
+    @Html.DisplayFor(model => model.BirtdayString)
 </dd>
 
 <dt>
@@ -91,7 +92,7 @@
 {
     <a href="http://@Model.Freelancer.LinkToGithub" style="color:purple"><i class="fab fa-github fa-4x"></i>Github</a>
 
-    
+
 }
 
 @if (Model.Freelancer.LinkToLinkedIn != null)
