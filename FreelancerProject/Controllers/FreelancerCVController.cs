@@ -41,7 +41,15 @@ namespace FreelancerProject.Controllers
             return RedirectToAction("Create", "Freelancer_Competence", new { freelancerId });
         }
 
+        public ActionResult UpdateContacts (int? freelancerId)
+        {
+            return RedirectToAction("Edit", "FreelancerPersons", new { freelancerId });
+        }
 
+        public ActionResult UpdateOtherInfo (int? freelancerId)
+        {
+            return RedirectToAction("Edit", "OtherInfoes", new { freelancerId });
+        }
 
     }
 }

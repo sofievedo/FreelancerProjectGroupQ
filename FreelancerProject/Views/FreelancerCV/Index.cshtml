@@ -6,7 +6,108 @@
 <h2> @Html.DisplayFor(model => model.Freelancer.Firstname) @Html.DisplayFor(model => model.Freelancer.Lastname)</h2>
 
 
+<hr />
+<h3>Kontaktuppgifter</h3>
 
+@Html.ActionLink("Ändra kontaktuppgifter", "UpdateContacts", new { freelancerId = Model.Freelancer.Id })
+
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.Firstname)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Freelancer.Firstname)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.Lastname)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Freelancer.Lastname)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.Birthday)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Freelancer.Birthday)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.Nationality)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Freelancer.Nationality)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.Address)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Freelancer.Address)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.ZipCode)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Freelancer.ZipCode)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.City)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Freelancer.City)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.Phonenumber)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Freelancer.Phonenumber)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.Email)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Freelancer.Email)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.LinkToLinkedIn)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Freelancer.LinkToLinkedIn)
+</dd>
+
+<dt>
+    @Html.DisplayNameFor(model => model.Freelancer.LinkToGithub)
+</dt>
+
+<dd>
+    @Html.DisplayFor(model => model.Freelancer.LinkToGithub)
+</dd>
+
+<i class="fab fa-github fa-4x"></i>
+
+
+
+<hr />
+
+<h3>Om mig</h3>
+@Html.ActionLink("Ändra uppgifter", "UpdateOtherInfo", new { freelancerId = Model.Freelancer.Id })
 
 <dt>
     @Html.DisplayNameFor(model => model.OtherInfo.ProfileMessage)
@@ -32,9 +133,6 @@
     @Html.DisplayFor(model => model.OtherInfo.CoreCompetences)
 </dd>
 
-
-
-
 <dt>
     @Html.DisplayNameFor(model => model.Languages)
 </dt>
@@ -45,8 +143,9 @@
     }
 </ul>
 
+<hr />
 
-<h2>Kompetenser</h2>
+<h3>Kompetenser</h3>
 @Html.ActionLink("Lägg till kompetens", "AddCompetence", new { freelancerId = Model.Freelancer.Id })
 
 
@@ -60,7 +159,7 @@
 </ul>
 
 
-<h2>Tidigare utbildningar</h2>
+<h3>Tidigare utbildningar</h3>
 
 @Html.ActionLink("Lägg till utbildning", "AddEducation", new { freelancerId = Model.Freelancer.Id })
 <br />
@@ -116,7 +215,7 @@
 </table>
 
 <hr />
-<h2>Tidigare arbeten</h2>
+<h3>Tidigare arbeten</h3>
 @Html.ActionLink("Lägg till arbete", "AddWork", new { freelancerId = Model.Freelancer.Id })
 
 <table class="table">
