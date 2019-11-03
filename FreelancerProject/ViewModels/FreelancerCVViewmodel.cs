@@ -12,6 +12,16 @@ namespace FreelancerProject.ViewModels
 
         public FreelancerPerson Freelancer { get; set; }
 
+        private string birthdayString;
+
+        public string BirtdayString
+        {
+            get { var birthday = Convert.ToDateTime(Freelancer.Birthday);
+                return birthday.ToString("yyyy-MM-dd"); }
+            set { birthdayString = value; }
+        }
+
+
         private ICollection<Languages> languages;
 
         public ICollection<Languages> Languages

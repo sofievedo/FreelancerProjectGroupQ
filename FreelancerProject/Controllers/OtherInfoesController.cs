@@ -62,13 +62,13 @@ namespace FreelancerProject.Controllers
         }
 
         // GET: OtherInfoes/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? freelancerId)
         {
-            if (id == null)
+            if (freelancerId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OtherInfo otherInfo = db.OtherInfo.Find(id);
+            OtherInfo otherInfo = db.OtherInfo.Find(freelancerId);
             if (otherInfo == null)
             {
                 return HttpNotFound();
@@ -88,7 +88,7 @@ namespace FreelancerProject.Controllers
             {
                 db.Entry(otherInfo).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "FreelancerCV", new { otherInfo.FreelancerId });
             }
             ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname", otherInfo.FreelancerId);
             return View(otherInfo);
