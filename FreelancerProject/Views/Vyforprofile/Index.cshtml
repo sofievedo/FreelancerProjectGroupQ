@@ -19,17 +19,21 @@
     <b> <p> @Model.Email</p></b>
     <br>
     <li class=" länkarGL"> @Model.LinkToGithub</li>
-    <li class=" länkarGL"> @Model.LinkToLinkedIn</li>
+    <li class=" länkarGL"> @Model.LinkToLinkedIn</p></li>
     <br>
     <br>
     <br>
 
     <br>
-    <div>@Html.ActionLink("Edit resume", "Index", "FreelancerCV", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" }) </div>
-    <br>
+    <button type="button" onclick="PopupResume();" class="btn btn-primary">View resume</button>
 
-    <div>@Html.ActionLink("Edit profile", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</div>
+    <script type="text/javascript">
 
+        PopupResume = function () {
+            window.open('/FreelancerCV/Index', "PopupWindow", 'width=700px,height=700px,top=150,left=250');
+        }
+
+    </script>
 
 </div>
 <div class="col-md-4">
@@ -87,4 +91,6 @@
         </p>
     </div>
 </div>
+
+
 

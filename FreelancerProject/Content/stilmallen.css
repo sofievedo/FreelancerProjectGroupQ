@@ -3,3 +3,65 @@
 footer{
     text-align:center;
 }
+.länkarGL {
+    list-style: none;
+}
+
+.freelancer-logo {
+    padding-top: 20px;
+    margin-top: 3px;
+    margin-left: 300px;
+    text-align: center;
+    margin-bottom: 0%;
+}
+
+#btn1 {
+    margin-left: 400px;
+    width: 300px;
+    float: center;
+}
+
+.loginbtn1 {
+    margin-top: 10px;
+}
+
+.loginbtn2 {
+    margin-bottom: 10px;
+}
+
+.nav {
+    float: right;
+}
+
+.text2 {
+    text-align: right;
+    margin-left: 20px;
+    margin-top: 25%;
+}
+
+#DemoCanvas {
+    text-align: center;
+}
+
+footer {
+    margin-top: 20px;
+}
+
+#lorem {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#loremipsum {
+    margin-left: 40px;
+}
+
+#logintxt {
+    margin-left: 410px;
+    text-align: center;
+    width: 300px;
+}
+
+#About {
+    text-align: center;
+}
