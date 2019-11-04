@@ -1,11 +1,11 @@
-﻿using FreelancerProject.Models;
+﻿using FreelancerProject.Controllers;
+using FreelancerProject.Models;
+using FreelancerProject.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FreelancerProject.ViewModels;
-using FreelancerProject.Controllers;
 
 namespace FreelancerProject.Controllers
 {
@@ -22,11 +22,7 @@ namespace FreelancerProject.Controllers
             return View(freelancer);
         }
 
-        public ActionResult AddEducation(int? freelancerId)
-        {
-            //EducationsController educationsController = new EducationsController();
-            return RedirectToAction("Create", "Educations", new { freelancerId });
-        }
+
 
 
         public ActionResult AddWork(int? freelancerId)
@@ -41,21 +37,55 @@ namespace FreelancerProject.Controllers
             return RedirectToAction("Create", "Freelancer_Competence", new { freelancerId });
         }
 
-        public ActionResult UpdateContacts (int? freelancerId)
+        public ActionResult UpdateContacts(int? freelancerId)
         {
             return RedirectToAction("Edit", "FreelancerPersons", new { freelancerId });
         }
 
-        public ActionResult UpdateOtherInfo (int? freelancerId)
+        public ActionResult UpdateOtherInfo(int? freelancerId)
         {
             return RedirectToAction("Edit", "OtherInfoes", new { freelancerId });
         }
 
-        public ActionResult UpdateEducation(int? freelancerId)
+        #region Educations
+        public ActionResult AddEducation(int? freelancerId)
         {
-
-            return RedirectToAction("Edit", "Educations", new { freelancerId });
+            return RedirectToAction("Create", "Educations", new { freelancerId });
+        }
+        public ActionResult UpdateEducation(int? id)
+        {
+            return RedirectToAction("Edit", "Educations", new { id });
         }
 
+        public ActionResult DetailsEducation(int? id)
+        {
+            return RedirectToAction("Details", "Educations", new { id });
+        }
+
+        public ActionResult DeleteEducation(int? id)
+        {
+            return RedirectToAction("Delete", "Educations", new { id });
+        }
+        #endregion
+
+        #region Work
+
+        public ActionResult UpdateWork(int? id)
+        {
+            return RedirectToAction("Edit", "Works", new { id });
+        }
+
+        public ActionResult DetailsWork(int? id)
+        {
+            return RedirectToAction("Details", "Works", new { id });
+        }
+
+        public ActionResult DeleteWork(int? id)
+        {
+            return RedirectToAction("Delete", "Works", new { id });
+
+        }
+
+        #endregion
     }
 }

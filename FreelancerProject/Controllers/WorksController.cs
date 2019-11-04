@@ -14,12 +14,6 @@ namespace FreelancerProject.Controllers
     {
         private FreelancerEntities db = new FreelancerEntities();
 
-        // GET: Works
-        public ActionResult Index()
-        {
-            var work = db.Work.Include(w => w.FreelancerPerson);
-            return View(work.ToList());
-        }
 
         // GET: Works/Details/5
         public ActionResult Details(int? id)
@@ -72,7 +66,7 @@ namespace FreelancerProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname", work.FreelancerId);
+            ViewBag.FreelancerId = work.FreelancerId;
             return View(work);
         }
 
@@ -87,9 +81,9 @@ namespace FreelancerProject.Controllers
             {
                 db.Entry(work).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "FreelancerCV", new { work.FreelancerId });
             }
-            ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname", work.FreelancerId);
+            ViewBag.FreelancerId =  work.FreelancerId;
             return View(work);
         }
 
@@ -116,7 +110,7 @@ namespace FreelancerProject.Controllers
             Work work = db.Work.Find(id);
             db.Work.Remove(work);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "FreelancerCV", new { work.FreelancerId });
         }
 
         protected override void Dispose(bool disposing)

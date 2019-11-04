@@ -1,29 +1,37 @@
-﻿@model FreelancerProject.Models.Work
+﻿@model FreelancerProject.Models.Education
 
 @{
-    ViewBag.Title = "Arbete";
+    ViewBag.Title = "Utbildning";
 }
 
-<h2>Ta bort arbete</h2>
+<h2>Ta bort utbildning</h2>
 
-<h3>Är du säker på att du vill ta bort detta arbete från ditt CV?</h3>
+<h3>Är du säker på att du vill ta bort denna utbildning från ditt CV?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Role)
+            @Html.DisplayNameFor(model => model.School)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Role)
+            @Html.DisplayFor(model => model.School)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Company)
+            @Html.DisplayNameFor(model => model.Degree)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Company)
+            @Html.DisplayFor(model => model.Degree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
         </dd>
 
         <dt>
@@ -40,14 +48,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.EndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WorkDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WorkDescription)
         </dd>
 
         <dt>
