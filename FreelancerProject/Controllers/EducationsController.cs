@@ -92,7 +92,7 @@ namespace FreelancerProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "FreelancerCV", new { education.FreelancerId });
             }
-            ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname", education.FreelancerId);
+            ViewBag.FreelancerId = education.FreelancerId;
             return View(education);
         }
 

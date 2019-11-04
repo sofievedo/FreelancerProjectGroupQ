@@ -269,7 +269,6 @@
     <Content Include="Views\Works\Delete.cshtml" />
     <Content Include="Views\Works\Details.cshtml" />
     <Content Include="Views\Works\Edit.cshtml" />
-    <Content Include="Views\Works\Index.cshtml" />
     <Content Include="Views\ProfileFreelancer\ProfileFreelancer.cshtml" />
     <Content Include="Views\FreelancerCV\Index.cshtml" />
     <Content Include="Views\ProfileFreelancer\Index.cshtml" />

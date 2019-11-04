@@ -259,9 +259,9 @@
 
             <!--TODO: Lägg till dessa länkar om man är inloggad som användare? -->
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Ändra", "UpdateWork", new { id = item.Id }) |
+                @Html.ActionLink("Läs mer", "DetailsWork", new { id = item.Id }) |
+                @Html.ActionLink("Ta bort", "DeleteWork", new { id = item.Id })
             </td>
         </tr>
     }
