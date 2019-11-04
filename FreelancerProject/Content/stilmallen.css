@@ -66,5 +66,13 @@ footer {
     text-align: center;
 }
 li{
+
     list-style:none;
+}
+#sök1{
+    margin-left:10px;
+
+}
+#sök2{
+    margin-left: 10px;
 }
