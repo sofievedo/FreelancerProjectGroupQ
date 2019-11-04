@@ -9,24 +9,40 @@ namespace FreelancerProject.Methods
     public static class SearchFreelancers
     {
         private static FreelancerEntities db = new FreelancerEntities();
-        private static List<FreelancerPerson> matchedFreelancers;
-        private static string thisSearchWord;
-
-        //TODO: Borde man söka genom alla utbildningar, jobb, etc. istället? 
 
         public static List<FreelancerPerson> SearchFreelancer(string searchWord)
         {
-            var allFreelancers = db.FreelancerPerson.ToList();
-            thisSearchWord = searchWord.ToLower();
-            matchedFreelancers = new List<FreelancerPerson>();
+            searchWord = searchWord.ToLower();
 
-            var matchingEducations = getMatchingEducations();
-            var matcingWorks = getMatchingWorks();
-            var matchingCompetences = getMatchingCompetences();
+            List<int> matchingEducations = GetFreelancerIDWithMatchingEducations(searchWord);
+            List<int> matcingWorks = GetFreelancerIDWithMatchingWorks(searchWord);
+            List<int> matchingCompetences = GetFreelancerIDWithMatchingCompetences(searchWord);
 
-            var matched = matchingEducations.Except(matchingCompetences).Except(matcingWorks);
+            List<int> matchingIDs = matchingCompetences.Union(matchingEducations).ToList().Union(matcingWorks).ToList();
 
-            foreach (var freelancerId in matched)
+            return ListOFMatchingFreelancers(matchingIDs);
+        }
+
+        private static List<int> GetFreelancerIDWithMatchingEducations(string searchWord)
+        {
+            return db.Education.Where(e => e.Subject.ToLower().Contains(searchWord)).Select(e => e.FreelancerId).ToList();
+        }
+
+        private static List<int> GetFreelancerIDWithMatchingWorks(string searchWord)
+        {
+            return db.Work.Where(w => w.Role.ToLower().Contains(searchWord)).Select(w => w.FreelancerId).ToList();
+        }
+
+        private static List<int> GetFreelancerIDWithMatchingCompetences(string searchWord)
+        {
+            return db.Freelancer_Competence.Where(c => c.Competence.CompetenceName.ToLower().Contains(searchWord)).Select(c => c.FreelancerId).ToList();
+        }
+
+        private static List<FreelancerPerson> ListOFMatchingFreelancers(List<int> matchingIDs)
+        {
+            List<FreelancerPerson> matchedFreelancers = new List<FreelancerPerson>();
+
+            foreach (var freelancerId in matchingIDs)
             {
                 matchedFreelancers.Add(db.FreelancerPerson.Find(freelancerId));
             }
@@ -34,22 +50,6 @@ namespace FreelancerProject.Methods
             return matchedFreelancers;
         }
 
-        private static List<int> getMatchingCompetences()
-        {
-            return db.Freelancer_Competence.Where(c => c.Competence.CompetenceName.ToLower() == thisSearchWord).Select(c => c.FreelancerId).ToList();
-        }
 
-        private static List<int> getMatchingWorks()
-        {
-            return db.Work.Where(w => w.Role.ToLower() == thisSearchWord).Select(w => w.FreelancerId).ToList();
-        }
-
-        private static List<int> getMatchingEducations()
-        {
-
-            return db.Education.Where(e => e.Subject.ToLower() == thisSearchWord).Select(e => e.FreelancerId).ToList();
-
-
-        }
     }
 }
