@@ -1,35 +1,32 @@
 ﻿@model IEnumerable<FreelancerProject.Models.FreelancerPerson>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Hitta frilansare";
 }
 <br />
 <br />
-<h2>Find a freelancer</h2>
-<br />
-<br />
-<br />
-<br />
+<h2>Sök bland frilansare</h2>
+<hr />
 
-<div class="container">
-    <div class="form-group">
-        <div class="input-group">
-            <span class="input-group-addon"></span><i class="glyphicon"></i>
-            <input type="text" id="Search" placeholder="Search" class="form-control" />
-        </div>
-    </div>
-</div>
-<br />
+
+
 
 @using (Html.BeginForm())
 {
     <form class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+        <div class="col-md-5">
             <input type="text" placeholder="Sök" class="form-control" name="searchWord" />
-            <input type="submit" value="Sök" class="btn btn-default" />
+            <br />
+            <input type="submit" value="Sök" class="btn btn-primary" />
         </div>
     </form>
 }
+
+
+<button class="btn btn-default" onclick="location.href='@Url.Action("Index")'"> Rensa sökning </button>
+<br />
+
+
 
 
 
@@ -37,60 +34,51 @@
     <thead>
         <tr>
             <th>
-                Firstname
-
+                @Html.DisplayNameFor(model => model.Firstname)
             </th>
             <th>
-                Lastname
-
+                @Html.DisplayNameFor(model => model.Lastname)
             </th>
             <th>
-                Address
-
+                Kärnkompetenser
             </th>
-            <th>
-                Phonenumber
 
-            </th>
             <th>
-                Email
-
-            </th>
-            <th>
-                Profile
+                Profil
 
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var Item in Model)
+        @foreach (var item in Model)
         {
-
-
-            <tr class="Search">
-                <td>@Item.Firstname</td>
-                <td>@Item.Lastname</td>
-                <td>@Item.Address</td>
-                <td>@Item.Phonenumber</td>
-                <td>@Item.Email</td>
-                @foreach (var Education in Item.Education)
-                {
-                    <td>@Education.Subject</td>
-                }
-                @foreach (var Competence in Item.Freelancer_Competence)
-                {
-                    <td>@Competence.Competence</td>
-                }
-
-
+            <tr>
                 <td>
-                    @Html.ActionLink("Profile", "Index", "Vyforprofile")
+                    @Html.DisplayFor(modelItem => item.Firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastname)
+                </td>
+
+                @foreach (var info in item.OtherInfo)
+                {
+
+                    <td>
+                        @info.CoreCompetences
+                    </td>
+                }
+                <td>
+                    @Html.ActionLink("Se profil", "Index", "Vyforprofile", new { freelancerId = item.Id })
+
                 </td>
             </tr>
 
         }
+
     </tbody>
 </table>
+
+
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script>
     $(document).ready(function () {

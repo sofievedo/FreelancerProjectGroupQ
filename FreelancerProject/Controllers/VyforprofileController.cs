@@ -11,9 +11,9 @@ namespace FreelancerProject.Controllers
     {
         private FreelancerEntities db = new FreelancerEntities();
         // GET: Vyforprofile
-        public ActionResult Index()
+        public ActionResult Index(int? freelancerId = 1)//TODO: Ta bort variabel
         {
-            var freelancer = db.FreelancerPerson.Find(1);
+            var freelancer = db.FreelancerPerson.Find(freelancerId);
 
             return View(freelancer);
         }
