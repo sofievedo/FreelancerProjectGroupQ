@@ -64,18 +64,18 @@ namespace FreelancerProject.Controllers
         }
 
         // GET: Educations/Edit/5
-        public ActionResult Edit(int? freelancerId)
+        public ActionResult Edit(int? id)
         {
-            if (freelancerId == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Education education = db.Education.Find(freelancerId);
+            Education education = db.Education.Find(id);
             if (education == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.FreelancerId = freelancerId;
+            ViewBag.FreelancerId = education.FreelancerId;
             return View(education);
         }
 
@@ -84,13 +84,13 @@ namespace FreelancerProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FreelancerId,School,Degree,Subject,StartDate,EndDate")] Education education)
+        public ActionResult Edit([Bind(Include = "Id, FreelancerId,School,Degree,Subject,StartDate,EndDate")] Education education)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(education).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "FreelancerCV", new { education.FreelancerId });
             }
             ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname", education.FreelancerId);
             return View(education);
@@ -119,7 +119,7 @@ namespace FreelancerProject.Controllers
             Education education = db.Education.Find(id);
             db.Education.Remove(education);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "FreelancerCV", new { education.FreelancerId });
         }
 
         protected override void Dispose(bool disposing)
