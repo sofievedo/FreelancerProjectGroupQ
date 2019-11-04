@@ -90,14 +90,14 @@
 </dt>
 @if (Model.Freelancer.LinkToGithub != null)
 {
-    <a href="http://@Model.Freelancer.LinkToGithub" style="color:purple"><i class="fab fa-github fa-4x"></i>Github</a>
+    <a href="http://@Model.Freelancer.LinkToGithub" style="color:purple"><i class="fab fa-github fa-3x"></i></a>
 
 
 }
 
 @if (Model.Freelancer.LinkToLinkedIn != null)
 {
-    <a href="http://@Model.Freelancer.LinkToLinkedIn"><i class="fab fa-linkedin fa-4x"></i>Linked In   </a>
+    <a href="http://@Model.Freelancer.LinkToLinkedIn"><i class="fab fa-linkedin fa-3x"></i></a>
 
 }
 
@@ -205,7 +205,7 @@
 
             <!--TODO: Lägg till dessa länkar om man är inloggad som användare? -->
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Ändra", "UpdateEducation", new { freelancerId = Model.Freelancer.Id })  |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>

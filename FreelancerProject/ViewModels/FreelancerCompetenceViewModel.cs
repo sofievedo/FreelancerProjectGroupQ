@@ -19,7 +19,6 @@ namespace FreelancerProject.ViewModels
 
         public string ExceptionMessage { get; set; }
 
-        private List<string> rankingList;
 
         public int Ranking { get; set; }
 
