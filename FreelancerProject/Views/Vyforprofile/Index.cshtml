@@ -18,8 +18,14 @@
     <br>
     <b> <p> @Model.Email</p></b>
     <br>
-    <li class=" länkarGL"> @Model.LinkToGithub</li>
-    <li class=" länkarGL"> @Model.LinkToLinkedIn</p></li>
+    @if (Model.LinkToLinkedIn != null)
+    {
+        <a href="http://@Model.LinkToLinkedIn"><i class="fab fa-linkedin fa-3x"></i></a>
+
+    }
+    <a href="http://model.freelancer.linktogithub/" style="color:purple"><i class="fab fa-github fa-3x"></i></a>
+
+  
     <br>
     <br>
     <br>
@@ -30,7 +36,7 @@
     <script type="text/javascript">
 
         PopupResume = function () {
-            window.open('/FreelancerCV/Index', "PopupWindow", 'width=700px,height=700px,top=150,left=250');
+            window.open('/FreelancerCV/Index', "PopupWindow", 'width=1000px,height=700px,top=150,left=250');
         }
 
     </script>

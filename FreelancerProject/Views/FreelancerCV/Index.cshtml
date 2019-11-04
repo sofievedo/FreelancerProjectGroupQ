@@ -2,8 +2,194 @@
 @{
     ViewBag.Title = "Index";
 }
+<br />
+<div class="col-md-4">
+    <h2> @Html.DisplayFor(model => model.Freelancer.Firstname) @Html.DisplayFor(model => model.Freelancer.Lastname)</h2>
 
-<h2> @Html.DisplayFor(model => model.Freelancer.Firstname) @Html.DisplayFor(model => model.Freelancer.Lastname)</h2>
+
+    <hr />
+    <h3>Kontaktuppgifter</h3>
+
+    <button class="btn-primary" onclick="location.href='@Url.Action("UpdateContacts",  new {freelancerId = Model.Freelancer.Id})'"><i class="fas fa-edit"></i>  Ändra kontaktuppgifter</button>
+
+
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Freelancer.Firstname)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Freelancer.Firstname)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Freelancer.Lastname)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Freelancer.Lastname)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Freelancer.Birthday)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.BirtdayString)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Freelancer.Nationality)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Freelancer.Nationality)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Freelancer.Address)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Freelancer.Address)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Freelancer.ZipCode)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Freelancer.ZipCode)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Freelancer.City)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Freelancer.City)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Freelancer.Phonenumber)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Freelancer.Phonenumber)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Freelancer.Email)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Freelancer.Email)
+    </dd>
+
+    <dt>
+        Jag finns på:
+    </dt>
+    @if (Model.Freelancer.LinkToGithub != null)
+    {
+        <a href="http://@Model.Freelancer.LinkToGithub" style="color:purple"><i class="fab fa-github fa-3x"></i></a>
+
+
+    }
+
+    @if (Model.Freelancer.LinkToLinkedIn != null)
+    {
+        <a href="http://@Model.Freelancer.LinkToLinkedIn"><i class="fab fa-linkedin fa-3x"></i></a>
+
+    }
+</div>
+
+<div class="col-md-4">
+    <canvas id="DemoCanvas" width="400" height="600"></canvas>
+    <script>
+        var canvas = document.getElementById('DemoCanvas');
+        if (canvas.getContext) {
+            var context = canvas.getContext("2d");
+            context.beginPath(10);
+            context.moveTo(100, 10);
+            context.lineTo(100, 1000);
+            context.lineWidth = 5;
+            context.strokeStyle = '#000000';
+            context.stroke();
+        }
+    </script>
+
+</div>
+
+
+<div class="col-md-4">
+    <h2>Om mig</h2>
+
+    <hr />
+    @Html.ActionLink("Ändra uppgifter", "UpdateOtherInfo", new { freelancerId = Model.Freelancer.Id })
+
+    <dt>
+        @Html.DisplayNameFor(model => model.OtherInfo.ProfileMessage)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.OtherInfo.ProfileMessage)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.OtherInfo.DriversLicence)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.OtherInfo.DriversLicence)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.OtherInfo.CoreCompetences)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.OtherInfo.CoreCompetences)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Languages)
+    </dt>
+    <ul>
+        @foreach (var item in Model.Languages)
+        {
+            <li>@item.Language</li>
+        }
+    </ul>
+
+    <h3>Kompetenser</h3>
+    @Html.ActionLink("Lägg till kompetens", "AddCompetence", new { freelancerId = Model.Freelancer.Id })
+
+
+    <ul>
+        @foreach (var item in Model.Freelancer.Freelancer_Competence)
+        {
+            <li>
+                @item.Competence.CompetenceName - @item.Ranking
+            </li>
+        }
+    </ul>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+</div>
+<hr />
+
+
+@*<h2> @Html.DisplayFor(model => model.Freelancer.Firstname) @Html.DisplayFor(model => model.Freelancer.Lastname)</h2>
 
 
 <hr />
@@ -156,7 +342,7 @@
             @item.Competence.CompetenceName - @item.Ranking
         </li>
     }
-</ul>
+</ul>*@
 
 
 <h3>Tidigare utbildningar</h3>
