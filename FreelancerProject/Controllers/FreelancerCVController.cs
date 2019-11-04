@@ -51,5 +51,11 @@ namespace FreelancerProject.Controllers
             return RedirectToAction("Edit", "OtherInfoes", new { freelancerId });
         }
 
+        public ActionResult UpdateEducation(int? freelancerId)
+        {
+
+            return RedirectToAction("Edit", "Educations", new { freelancerId });
+        }
+
     }
 }

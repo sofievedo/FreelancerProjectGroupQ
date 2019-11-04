@@ -22,16 +22,11 @@ namespace FreelancerProject.ViewModels
         }
 
 
-        private ICollection<Languages> languages;
-
         public ICollection<Languages> Languages
         {
             get { return Freelancer.Languages; }
             set { Freelancer.Languages = value; }
         }
-
-
-        private ICollection<Education> educations;
 
         public ICollection<Education> Educations
         {
@@ -39,8 +34,6 @@ namespace FreelancerProject.ViewModels
             set { Freelancer.Education = value; }
         }
         
-        private ICollection<Work> works;
-
         public ICollection<Work> Works
         {
             get { return Freelancer.Work; }
