@@ -29,13 +29,17 @@ namespace FreelancerProject.ViewModels
 
         public List<Freelancer_Competence> FreelancersCompetences { get; set; }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="freelancerID"></param>
         public FreelancerCompetenceViewModel(int? id = 1) //TODO: Ta bort hårdkodning
         {
             Freelancer = db.FreelancerPerson.Find(id);
             FreelancersCompetences = db.Freelancer_Competence.Where(f => f.FreelancerId == id).ToList();
             FreelancerId = id;
-
-
+            
         }
 
         public FreelancerCompetenceViewModel() 

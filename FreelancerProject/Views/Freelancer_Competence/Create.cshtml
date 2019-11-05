@@ -19,7 +19,7 @@
 
         <div>
 
-            @Html.HiddenFor(model => model.FreelancerId, new { Value = Model.FreelancerId })
+            @Html.HiddenFor(model => model.CompetenceId, new { Value = Model.CompetenceId })
 
             <div class="form-group">
                 @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, "Välj roll", new { @class = "form-control" })

@@ -11,7 +11,7 @@ namespace FreelancerProject.Controllers
     public class Freelancer_CompetenceController : Controller
     {
         private FreelancerEntities db = new FreelancerEntities();
-        
+
         // GET: Freelancer_Competence
 
         [HttpGet]
@@ -47,14 +47,14 @@ namespace FreelancerProject.Controllers
 
                 try
                 {
-                    db.SaveChanges(); 
+                    db.SaveChanges();
                 }
                 catch (Exception)
                 {
                     //TODO:Fixa felmeddelande
-                   // RedirectToAction("Create", viewModel.FreelancerId);
+                    // RedirectToAction("Create", viewModel.FreelancerId);
                 }
-           
+
                 return RedirectToAction("Create", viewModel.FreelancerId);
             }
 
@@ -69,7 +69,15 @@ namespace FreelancerProject.Controllers
             return Json(competences, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Edit(int? id = 2)
+        {
 
+            EditCompetenceViewModel viewModel = new EditCompetenceViewModel(id);
+
+            List<int> rankingList = new List<int>() { 1, 2, 3, 4, 5 };
+            ViewBag.Ranking = new SelectList(rankingList);
+            return View(viewModel);
+        }
 
         protected override void Dispose(bool disposing)
         {
