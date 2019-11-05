@@ -7,6 +7,11 @@ footer{
     list-style: none;
 }
 
+.boldli{
+    font-weight: bold;
+    padding-top: 3px;
+}
+
 .freelancer-logo{
     padding-top: 20px;
     margin-top: 3px;
