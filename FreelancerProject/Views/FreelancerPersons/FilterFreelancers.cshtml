@@ -27,7 +27,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-inline">
-        <h4>Filtera på kompetens</h4>
+        <h4>Filtrera på kompetens</h4>
         <div>
             @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, "Välj roll", new { @class = "form-control" })
             @Html.DropDownListFor(model => model.CompetenceId, new SelectList(" "), "Välj kompetens", new { @class = "form-control" })
