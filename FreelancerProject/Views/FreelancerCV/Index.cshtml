@@ -169,18 +169,20 @@
 
     @foreach (var item in Model.Freelancer.Freelancer_Competence)
     {
-    <span class="badge badge-pill badge-primary">
+        <span class="badge badge-pill badge-primary">
 
-        @item.Competence.CompetenceName 
-        @for (int i = 0; i < item.Ranking; i++)
-        {
-            <i class="fas fa-star"></i>
-        }
-    </span>
+            @item.Competence.CompetenceName
+            @for (int i = 0; i < item.Ranking; i++)
+            {
+                <i class="fas fa-star"></i>
+            }
+        </span>
 
     }
 
 
+    <br />
+    <br />
     <br />
     <br />
     <br />
@@ -463,5 +465,5 @@
 </table>
 <br />
 <br />
-
-<a href="javascript:history.back()">Tillbaka</a>
+<p>@Html.ActionLink("Tillbaka", "Index", "ProfileFreelancer")</p>
+@*<a href="javascript:history.back()">Tillbaka</a>*@
