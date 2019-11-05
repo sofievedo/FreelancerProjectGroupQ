@@ -195,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bilder\freelancer-logo.png" />
+    <Content Include="Content\bilder\freelancerlogo.jpg" />
     <Content Include="Content\bilder\images.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
