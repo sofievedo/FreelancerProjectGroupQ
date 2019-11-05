@@ -24,6 +24,11 @@ namespace FreelancerProject.Controllers
             TempData["searchWord"] = "";
             return View(db.FreelancerPerson.ToList());
         }
+        public ActionResult Vy(int? freelancerId)
+        {
+            return RedirectToAction("Index", "Vyforprofile", new { freelancerId });
+        }
+
 
         [HttpPost]
         public ActionResult Index(string searchWord)
