@@ -16,8 +16,11 @@ namespace FreelancerProject.ViewModels
 
         public string BirtdayString
         {
-            get { var birthday = Convert.ToDateTime(Freelancer.Birthday);
-                return birthday.ToString("yyyy-MM-dd"); }
+            get
+            {
+                var birthday = Convert.ToDateTime(Freelancer.Birthday);
+                return birthday.ToString("yyyy-MM-dd");
+            }
             set { birthdayString = value; }
         }
 
@@ -33,11 +36,27 @@ namespace FreelancerProject.ViewModels
             get { return Freelancer.Education; }
             set { Freelancer.Education = value; }
         }
-        
+
         public ICollection<Work> Works
         {
             get { return Freelancer.Work; }
             set { Freelancer.Work = value; }
+        }
+
+
+        private Dictionary<string, int?> competencesWithRanking; //TODO: Kolla om det finns snyggare sätt att lösa detta. Ny klass? 
+        public Dictionary<string, int?> CompetencesWithRanking
+        {
+            get
+            {
+                competencesWithRanking = new Dictionary<string, int?>();
+                var listOfCompetences = Freelancer.Freelancer_Competence.OrderByDescending(c =>c.Ranking);
+                foreach (var item in listOfCompetences)
+                {
+                    competencesWithRanking.Add(item.Competence.CompetenceName, item.Ranking);
+                }
+                return competencesWithRanking;
+            }
         }
 
         private OtherInfo otherInfo;
@@ -48,11 +67,7 @@ namespace FreelancerProject.ViewModels
             set { otherInfo = value; } //TODO: Har ingen fungerande setmetod
         }
 
-
-
-
-
-        public FreelancerCVViewmodel(int id = 1) //TODO: Ta bort hårdkodning
+        public FreelancerCVViewmodel(int? id = 1) //TODO: Ta bort hårdkodning
         {
             Freelancer = db.FreelancerPerson.Find(id);
         }

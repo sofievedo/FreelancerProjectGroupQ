@@ -14,9 +14,8 @@ namespace FreelancerProject.Controllers
         private FreelancerEntities db = new FreelancerEntities();
 
         // GET: FreelancerCV
-        public ActionResult Index()
+        public ActionResult Index(int? id=1)
         {
-            int id = 1; //TODO: Ta bort hårdkodning
             var freelancer = new FreelancerCVViewmodel(id);
 
             return View(freelancer);
