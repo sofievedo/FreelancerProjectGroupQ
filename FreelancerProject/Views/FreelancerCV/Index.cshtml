@@ -13,7 +13,6 @@
     <button class="btn-primary" onclick="location.href='@Url.Action("UpdateContacts",  new {freelancerId = Model.Freelancer.Id})'"><i class="fas fa-edit"></i>  Ändra kontaktuppgifter</button>
 
 
-
     <dt>
         @Html.DisplayNameFor(model => model.Freelancer.Firstname)
     </dt>
@@ -154,25 +153,25 @@
     <dt>
         @Html.DisplayNameFor(model => model.Languages)
     </dt>
-    <ul>
+   
         @foreach (var item in Model.Languages)
         {
-            <li>@item.Language</li>
+            <dd>@item.Language</dd>
         }
-    </ul>
+    
 
     <h3>Kompetenser</h3>
     @Html.ActionLink("Lägg till kompetens", "AddCompetence", new { freelancerId = Model.Freelancer.Id })
 
 
-    <ul>
+
         @foreach (var item in Model.Freelancer.Freelancer_Competence)
         {
-            <li>
+            <dd>
                 @item.Competence.CompetenceName - @item.Ranking
-            </li>
+            </dd>
         }
-    </ul>
+
     <br />
     <br />
     <br />

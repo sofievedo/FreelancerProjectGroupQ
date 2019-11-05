@@ -1,0 +1,93 @@
+﻿@model FreelancerProject.ViewModels.FilterFreelancersViewModel
+
+@{
+    ViewBag.Title = "Hitta frilansare";
+}
+<br />
+<br />
+<h2>Hitta frilansare</h2>
+<hr />
+
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-inline">
+        <h4>Fritext</h4>
+        <form class="form-group">
+            <input type="text" placeholder="Sök" class="form-control" name="searchWord" />
+            <input type="submit" value="Sök" class="btn btn-primary" />
+        </form>
+    </div>
+}
+<button style="margin-top:2px" class="btn btn-default" onclick="location.href='@Url.Action("FilterFreelancers")'"> Rensa sökning </button>
+<br />
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-inline">
+        <h4>Filtera på kompetens</h4>
+        <div>
+            @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, "Välj roll", new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.CompetenceId, new SelectList(" "), "Välj kompetens", new { @class = "form-control" })
+            <input type="submit" value="Sök" class="btn btn-primary" />
+        </div>
+
+        <div class="form-group">
+            <button style="margin-top:2px" class="btn btn-default" onclick="location.href='@Url.Action("FilterFreelancers")'"> Rensa sökning </button>
+
+        </div>
+
+    </div>
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Förnamn</th>
+            <th>Efternamn </th>
+            <th>Kärnkompetenser</th>
+            <th>Profil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Freelancers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastname)
+                </td>
+
+                @foreach (var info in item.OtherInfo)
+                {
+                    <td>
+                        @info.CoreCompetences
+                    </td>
+                }
+                <td>
+                    @Html.ActionLink("Se profil", "Index", "Vyforprofile", new { freelancerId = item.Id })
+
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval"),
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/DropdownForCompetences.js"></script>
+
+
