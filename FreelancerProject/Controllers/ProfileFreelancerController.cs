@@ -13,10 +13,10 @@ namespace FreelancerProject.Controllers
       
         private FreelancerEntities db = new FreelancerEntities();
         // GET: ProfileFreelancer
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
 
-            var freelancer = db.FreelancerPerson.Find(1);
+            var freelancer = db.FreelancerPerson.Find(id);
 
             return View(freelancer);
         }

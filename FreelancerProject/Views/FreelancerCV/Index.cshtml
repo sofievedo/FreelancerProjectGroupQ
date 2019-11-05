@@ -153,24 +153,33 @@
     <dt>
         @Html.DisplayNameFor(model => model.Languages)
     </dt>
-   
-        @foreach (var item in Model.Languages)
-        {
-            <dd>@item.Language</dd>
-        }
-    
+
+    @foreach (var item in Model.Languages)
+    {
+        <span class="badge badge-pill badge-secondary" style="background:green">
+            @item.Language
+        </span>
+    }
+
 
     <h3>Kompetenser</h3>
     @Html.ActionLink("Lägg till kompetens", "AddCompetence", new { freelancerId = Model.Freelancer.Id })
 
+    <br />
 
+    @foreach (var item in Model.Freelancer.Freelancer_Competence)
+    {
+    <span class="badge badge-pill badge-primary">
 
-        @foreach (var item in Model.Freelancer.Freelancer_Competence)
+        @item.Competence.CompetenceName 
+        @for (int i = 0; i < item.Ranking; i++)
         {
-            <dd>
-                @item.Competence.CompetenceName - @item.Ranking
-            </dd>
+            <i class="fas fa-star"></i>
         }
+    </span>
+
+    }
+
 
     <br />
     <br />
