@@ -1,5 +1,7 @@
 ﻿@model FreelancerProject.ViewModels.FreelancerCompetenceViewModel
 @{
+    /**/
+
     ViewBag.Title = "Kompetenser";
 }
 
@@ -12,39 +14,39 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <hr />
+    <div class="form-horizontal">
+        <hr />
 
-    <div>
+        <div>
 
-        @Html.HiddenFor(model => model.FreelancerId, new { Value = Model.FreelancerId })
+            @Html.HiddenFor(model => model.FreelancerId, new { Value = Model.FreelancerId })
 
-        <div class="form-group">
-            @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, "Välj roll", new { @class = "form-control" })
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, "Välj roll", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.CompetenceId, new SelectList(" "), "Välj kompetens", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.Ranking, ViewBag.Ranking as SelectList, "Välj ranking", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @if (Model.ExceptionMessage != null)
+                {
+                    <p> @Model.ExceptionMessage; </p>
+                    @Html.LabelFor(model => model.ExceptionMessage)
+
+                }
+            </div>
+
+
         </div>
         <div class="form-group">
-            @Html.DropDownListFor(model => model.CompetenceId, new SelectList(" "), "Välj kompetens", new { @class = "form-control" })
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lägg till" class="btn btn-default" />
+            </div>
         </div>
-        <div class="form-group">
-            @Html.DropDownListFor(model => model.Ranking, ViewBag.Ranking as SelectList, "Välj ranking", new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @if (Model.ExceptionMessage != null)
-            {
-                <p> @Model.ExceptionMessage; </p>
-                @Html.LabelFor(model => model.ExceptionMessage)
-
-            }
-        </div class="form-group">
-
-
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Lägg till" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
 <div>
@@ -52,22 +54,9 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval"),
 }
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/DropdownForCompetences.js"></script>
 
-@* Källa: https://www.youtube.com/watch?v=XVbRcLAmK4U & https://www.c-sharpcorner.com/UploadFile/4d9083/creating-simple-cascading-dropdownlist-in-mvc-4-using-razor/ *@
-<script>
-    //TODO: Lägga till detta scirptet i egen metod?
-    $(document).ready(function () {
-        $("#RoleId").change(function () {
-            $.get("/Freelancer_Competence/GetCompetenceList", { RoleId: $("#RoleId").val() }, function (competence) {
-                $("#CompetenceId").empty();
-                $.each(competence, function (index, row) {
-                    $("#CompetenceId").append("<option value='" + row.Id + "'>" + row.CompetenceName + "</option>");
-                });
-            });
-        })
-    });
-</script>

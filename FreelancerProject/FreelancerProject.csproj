@@ -190,6 +190,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CV.cs" />
+    <Compile Include="ViewModels\FilterFreelancersViewModel.cs" />
     <Compile Include="ViewModels\FreelancerCompetenceViewModel.cs" />
     <Compile Include="ViewModels\FreelancerCVViewmodel.cs" />
   </ItemGroup>
@@ -225,6 +226,7 @@
       <DependentUpon>FreelancerProjectModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\DropdownForCompetences.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -278,6 +280,7 @@
     <Content Include="Views\Vyforprofile\Index.cshtml" />
     <Content Include="Views\Educations\Details.cshtml" />
     <Content Include="Views\Educations\Delete.cshtml" />
+    <Content Include="Views\FreelancerPersons\FilterFreelancers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
