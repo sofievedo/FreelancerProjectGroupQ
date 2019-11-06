@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Kund</h2>
 
 <div>
-    <h4>Customer</h4>
+    @*<h4>Kund</h4>*@
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -93,6 +93,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Ändra", "Edit", new { id = Model.Id }) |
+    @*@Html.ActionLink("Back to List", "Index")*@
+    <a href="javascript:history.back()">Tillbaka</a>
 </p>
