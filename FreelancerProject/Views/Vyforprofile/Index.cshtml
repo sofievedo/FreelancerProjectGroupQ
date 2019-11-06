@@ -12,9 +12,9 @@
     <br>
     <br>
     <br>
-    <b><p> @Model.Address</p></b>
+    <p> @Model.Address</p>
     <br>
-  <b><p> @Model.Phonenumber</p> </b>
+    <p> @Model.Phonenumber</p>
     <br>
     <b> <p> @Model.Email</p></b>
     <br>
@@ -23,7 +23,10 @@
         <a href="http://@Model.LinkToLinkedIn"><i class="fab fa-linkedin fa-3x"></i></a>
 
     }
-    <a href="http://model.freelancer.linktogithub/" style="color:purple"><i class="fab fa-github fa-3x"></i></a>
+    @if (Model.LinkToGithub != null)
+    {
+        <a href="http://model.freelancer.linktogithub/" style="color:purple"><i class="fab fa-github fa-3x"></i></a>
+    }
 
 
     <br />
@@ -42,7 +45,7 @@
     <br>
     <br>
     <br>
- 
+
     <a href="javascript:history.back()">Tillbaka</a>
 </div>
 <div class="col-md-4">

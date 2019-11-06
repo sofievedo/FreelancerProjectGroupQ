@@ -12,6 +12,7 @@ namespace FreelancerProject.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class OtherInfo
     {
@@ -22,8 +23,10 @@ namespace FreelancerProject.Models
         [DisplayName("Språk")]
         public string Languages { get; set; }
         [DisplayName("Kärnförmågor")]
+        [StringLength(100, ErrorMessage = "Överstiger maxgränsen på 100 tecken")]
         public string CoreCompetences { get; set; }
         [DisplayName("Min profil")]
+        [StringLength(500, ErrorMessage = "Överstiger maxgränsen på 100 tecken")]
         public string ProfileMessage { get; set; }
 
         public string TestText { get; set; }

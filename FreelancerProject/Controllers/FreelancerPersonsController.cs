@@ -61,6 +61,12 @@ namespace FreelancerProject.Controllers
         {
             return View();
         }
+        //[HttpPut]
+        //public ActionResult Create(int freelancerId)
+        //{
+        //    var freelancer = db.FreelancerPerson.Find(freelancerId);
+        //    return View(freelancer);
+        //}
 
         // POST: FreelancerPersons/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -73,7 +79,7 @@ namespace FreelancerProject.Controllers
             {
                 db.FreelancerPerson.Add(freelancerPerson);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Vyforprofile", new { freelancerId = freelancerPerson.Id });
+                return RedirectToAction("Create", "OtherInfoes", new { freelancerId = freelancerPerson.Id });
             }
 
             return View(freelancerPerson);

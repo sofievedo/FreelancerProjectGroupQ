@@ -37,10 +37,19 @@ namespace FreelancerProject.Controllers
         }
 
         // GET: OtherInfoes/Create
-        public ActionResult Create()
+        public ActionResult Create(int? freelancerId)
         {
-            ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname");
-            return View();
+            if(freelancerId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var otherinfo = new OtherInfo()
+            {
+                FreelancerId = Convert.ToInt32(freelancerId)
+            };
+
+            return View(otherinfo);
         }
 
         // POST: OtherInfoes/Create
@@ -54,10 +63,9 @@ namespace FreelancerProject.Controllers
             {
                 db.OtherInfo.Add(otherInfo);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "ProfileFreelancer", new { freelancerId = otherInfo.FreelancerId });
             }
 
-            ViewBag.FreelancerId = new SelectList(db.FreelancerPerson, "Id", "Firstname", otherInfo.FreelancerId);
             return View(otherInfo);
         }
 

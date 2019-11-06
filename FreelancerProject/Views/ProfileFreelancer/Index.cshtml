@@ -28,10 +28,11 @@
     <br>
     <br>
 
-    <div>@Html.ActionLink("Lägg till CV", "Index", "FreelancerCV", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" }) </div>
+
+    <div>@Html.ActionLink("Gå till CV", "Index", "FreelancerCV", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" }) </div>
     <br>
 
-    <div>@Html.ActionLink("Ändra profil", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</div>
+    <div>@Html.ActionLink("Ändra profil", "Edit", "FreelancerPersons", routeValues: new { freelancerId = Model.Id }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</div>
 
     <br>
     <br>
@@ -58,37 +59,54 @@
         <h3 id="About">Om mig</h3>
         <br>
         <br>
-        <p id="lorem">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-            sunt in culpa qui officia deserunt mollit anim id est laborum.
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+        @foreach (var item in Model.OtherInfo)
+        {
+            if (item.ProfileMessage != null)
+            {
+                <p>
+                    @item.ProfileMessage
+                </p>
+            }
+
+            else 
+            {
+
+                <p id="lorem">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                    sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+
+            };
+        }
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         </p>
     </div>
 </div>

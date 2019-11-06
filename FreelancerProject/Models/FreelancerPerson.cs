@@ -42,12 +42,16 @@ namespace FreelancerProject.Models
         [DisplayName("Gatuadress")]
         public string Address { get; set; }
         [DisplayName("Postnummer")]
+        [StringLength(6, ErrorMessage ="Vänligen fyll i ett postnummer")]
         public string ZipCode { get; set; }
         [DisplayName("Ort")]
         public string City { get; set; }
         [DisplayName("Telefonnummer")]
+        [Phone(ErrorMessage = "Vänligen fyll i ett korrekt telefonnummer")]
         public string Phonenumber { get; set; }
         [DisplayName("Mailadress")]
+        [Required(ErrorMessage = "Vänligen fyll i en mailadress")]
+        [EmailAddress(ErrorMessage = "Vänligen fyll i en korrekt mailadress")]
         public string Email { get; set; }
         [DisplayName("Linked In")]
         public string LinkToLinkedIn { get; set; }
