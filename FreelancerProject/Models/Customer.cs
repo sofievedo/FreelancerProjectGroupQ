@@ -43,7 +43,7 @@ namespace FreelancerProject.Models
         [DisplayName("Skicka e-postaviseringar")]
         public byte[] WantsEmailNotification { get; set; }
         [DisplayName("Skicka e-postaviseringar")]
-        public bool GetNotificationByEmail { get; set; }
+        public byte[] GetNotificationByEmail { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FreelancerPerson> FreelancerPerson { get; set; }
