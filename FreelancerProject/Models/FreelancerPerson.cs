@@ -63,5 +63,8 @@ namespace FreelancerProject.Models
         public virtual ICollection<Customer> Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Languages> Languages { get; set; }
+
+
+
     }
 }

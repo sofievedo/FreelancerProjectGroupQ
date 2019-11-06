@@ -43,22 +43,6 @@ namespace FreelancerProject.ViewModels
             set { Freelancer.Work = value; }
         }
 
-
-        private Dictionary<string, int?> competencesWithRanking; //TODO: Kolla om det finns snyggare sätt att lösa detta. Ny klass? 
-        public Dictionary<string, int?> CompetencesWithRanking
-        {
-            get
-            {
-                competencesWithRanking = new Dictionary<string, int?>();
-                var listOfCompetences = Freelancer.Freelancer_Competence.OrderByDescending(c =>c.Ranking);
-                foreach (var item in listOfCompetences)
-                {
-                    competencesWithRanking.Add(item.Competence.CompetenceName, item.Ranking);
-                }
-                return competencesWithRanking;
-            }
-        }
-
         private OtherInfo otherInfo;
 
         public OtherInfo OtherInfo
@@ -66,6 +50,17 @@ namespace FreelancerProject.ViewModels
             get { return db.OtherInfo.Where(f => f.FreelancerId == Freelancer.Id).FirstOrDefault(); }
             set { otherInfo = value; } //TODO: Har ingen fungerande setmetod
         }
+
+        private IOrderedEnumerable<Freelancer_Competence> sortedCompetenceList;
+
+        public IOrderedEnumerable<Freelancer_Competence> SortedCompetenceList
+        {
+            get
+            {
+                return Freelancer.Freelancer_Competence.OrderByDescending(c => c.Ranking);
+            }
+        }
+
 
         public FreelancerCVViewmodel(int? id = 1) //TODO: Ta bort hårdkodning
         {

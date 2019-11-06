@@ -18,11 +18,9 @@ namespace FreelancerProject.Controllers
         {
             var freelancer = new FreelancerCVViewmodel(id);
 
+
             return View(freelancer);
         }
-
-
-
 
         public ActionResult AddWork(int? freelancerId)
         {

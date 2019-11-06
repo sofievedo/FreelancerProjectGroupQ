@@ -71,20 +71,20 @@ namespace FreelancerProject.Controllers
             return Json(competences, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Edit(int? id = 2, int? freelancerID = 1)
+        public ActionResult Edit(int id, int freelancerId)
         {
-            if (id == null || freelancerID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }           
+            //if (competenceId == null || freelancerId == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}           
             
             List<int> rankingList = new List<int>() { 1, 2, 3, 4, 5 };
             ViewBag.Ranking = new SelectList(rankingList);
-            return View(new EditCompetenceViewModel(id, freelancerID) );
+            return View(new EditCompetenceViewModel(id, freelancerId) );
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
 
         public ActionResult Edit(EditCompetenceViewModel viewModel)
         {     

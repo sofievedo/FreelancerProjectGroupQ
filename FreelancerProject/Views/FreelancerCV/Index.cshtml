@@ -161,12 +161,12 @@
             <br />
 
             <div class="list-group">
-                @foreach (var item in Model.CompetencesWithRanking)
+                @foreach (var item in Model.SortedCompetenceList)
                 {
-                    <a href=@Url.Action("") class="list-group-item d-flex justify-content-between align-items-center">
-                        @item.Key
+                    <a href=@Html.Raw(@Url.Action("Edit","Freelancer_Competence", new {id = item.CompetenceId, freelancerId = item.FreelancerId })) class="list-group-item d-flex justify-content-between align-items-center">
+                        @item.Competence.CompetenceName
                         <span class="badge badge-pill badge-primary">
-                            @for (int i = 0; i < item.Value; i++)
+                            @for (int i = 0; i < item.Ranking; i++)
                             {
                                 <i class="fas fa-star"></i>
                             }
