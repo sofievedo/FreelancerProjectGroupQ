@@ -83,15 +83,78 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.WantsEmailNotification)
+            @Html.DisplayNameFor(model => model.GetNotificationByEmail)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.WantsEmailNotification)
+            @Html.DisplayFor(model => model.GetNotificationByEmail)
         </dd>
+
+
 
     </dl>
 </div>
+
+@if (Model.FreelancerPerson.Count >0)
+{
+    <div class="col-sm-pull-10">
+        <h3>Sparade frilansare</h3>
+        <br />
+
+        <table class="table">
+            <tr>
+                <th>
+                    Förnamn
+                </th>
+                <th>
+                    Efternamn
+                </th>
+                <th>
+                    Kärnkompetenser
+                </th>
+                <th>
+                    Profil
+                </th>
+
+                <th>
+
+                </th>
+            </tr>
+
+            @foreach (var item in Model.FreelancerPerson)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Firstname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lastname)
+                    </td>
+                    <td>
+                        @foreach (var info in item.OtherInfo)
+                        {
+                            @Html.Display(info.CoreCompetences)
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Se profil", "Index", "Vyforprofile", new { freelancerId = item.Id })
+                    </td>
+
+
+
+                    <!--TODO: Lägg till dessa länkar om man är inloggad som användare? -->
+                    <td>
+                        Ta bort 
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+
+    <hr />
+}
 <p>
     @Html.ActionLink("Ändra", "Edit", new { id = Model.Id }) |
     @*@Html.ActionLink("Back to List", "Index")*@

@@ -48,7 +48,6 @@ namespace FreelancerProject.ViewModels
         public OtherInfo OtherInfo
         {
             get { return db.OtherInfo.Where(f => f.FreelancerId == Freelancer.Id).FirstOrDefault(); }
-            set { otherInfo = value; } //TODO: Har ingen fungerande setmetod
         }
 
         public IOrderedEnumerable<Freelancer_Competence> SortedCompetenceList
@@ -63,6 +62,6 @@ namespace FreelancerProject.ViewModels
         public FreelancerCVViewmodel(int? id = 1) //TODO: Ta bort hårdkodning
         {
             Freelancer = db.FreelancerPerson.Find(id);
-        }
+        }  
     }
 }
