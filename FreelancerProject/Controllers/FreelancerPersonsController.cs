@@ -73,7 +73,7 @@ namespace FreelancerProject.Controllers
             {
                 db.FreelancerPerson.Add(freelancerPerson);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Vyforprofile", new { freelancerId = freelancerPerson.Id });
             }
 
             return View(freelancerPerson);

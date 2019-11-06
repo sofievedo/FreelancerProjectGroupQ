@@ -12,6 +12,7 @@ namespace FreelancerProject.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class FreelancerPerson
     {
@@ -28,7 +29,9 @@ namespace FreelancerProject.Models
     
         public int Id { get; set; }
 
+
         [DisplayName("Förnamn")]
+        [Required(ErrorMessage = "Vänligen fyll i ett förnamn")]
         public string Firstname { get; set; }
         [DisplayName("Efternamn")]
         public string Lastname { get; set; }
