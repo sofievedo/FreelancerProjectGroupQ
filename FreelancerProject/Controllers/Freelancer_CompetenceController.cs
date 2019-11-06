@@ -2,7 +2,9 @@
 using FreelancerProject.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,7 +13,7 @@ namespace FreelancerProject.Controllers
     public class Freelancer_CompetenceController : Controller
     {
         private FreelancerEntities db = new FreelancerEntities();
-        
+
         // GET: Freelancer_Competence
 
         [HttpGet]
@@ -47,14 +49,14 @@ namespace FreelancerProject.Controllers
 
                 try
                 {
-                    db.SaveChanges(); 
+                    db.SaveChanges();
                 }
                 catch (Exception)
                 {
                     //TODO:Fixa felmeddelande
-                   // RedirectToAction("Create", viewModel.FreelancerId);
+                    // RedirectToAction("Create", viewModel.FreelancerId);
                 }
-           
+
                 return RedirectToAction("Create", viewModel.FreelancerId);
             }
 
@@ -69,7 +71,41 @@ namespace FreelancerProject.Controllers
             return Json(competences, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Edit(int id, int freelancerId)
+        {
+            //if (competenceId == null || freelancerId == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}           
+            
+            List<int> rankingList = new List<int>() { 1, 2, 3, 4, 5 };
+            ViewBag.Ranking = new SelectList(rankingList);
+            return View(new EditCompetenceViewModel(id, freelancerId) );
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult Edit(EditCompetenceViewModel viewModel)
+        {     
+            Freelancer_Competence updatedComptence = new Freelancer_Competence()
+            {
+                FreelancerId = viewModel.FreelancerId,
+                CompetenceId = viewModel.CompetenceId,
+                Ranking = viewModel.Ranking
+            };
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(updatedComptence).State = EntityState.Modified; //TODO: lägg till säkerhetsfunktioner
+                db.SaveChanges();
+                return RedirectToAction("Index", "FreelancerCV", new { viewModel.FreelancerId });
+            }
+            List<int?> rankingList = new List<int?>() { 1, 2, 3, 4, 5 }; //TODO: använd lista från viewmodel istället. 
+
+            ViewBag.Ranking = new SelectList(rankingList);
+            return View(viewModel);
+        }
 
         protected override void Dispose(bool disposing)
         {

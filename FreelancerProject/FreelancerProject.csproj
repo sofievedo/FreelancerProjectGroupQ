@@ -190,6 +190,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CV.cs" />
+    <Compile Include="ViewModels\EditCompetenceViewModel.cs" />
     <Compile Include="ViewModels\FilterFreelancersViewModel.cs" />
     <Compile Include="ViewModels\FreelancerCompetenceViewModel.cs" />
     <Compile Include="ViewModels\FreelancerCVViewmodel.cs" />
@@ -284,10 +285,11 @@
     <Content Include="Views\Educations\Details.cshtml" />
     <Content Include="Views\Educations\Delete.cshtml" />
     <Content Include="Views\FreelancerPersons\FilterFreelancers.cshtml" />
+    <Content Include="Views\Freelancer_Competence\Edit.cshtml" />
+    <Content Include="Views\Languages\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Languages\" />
     <Folder Include="Views\Role\" />
   </ItemGroup>
   <ItemGroup>

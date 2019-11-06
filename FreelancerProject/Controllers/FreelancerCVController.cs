@@ -18,11 +18,9 @@ namespace FreelancerProject.Controllers
         {
             var freelancer = new FreelancerCVViewmodel(id);
 
+
             return View(freelancer);
         }
-
-
-
 
         public ActionResult AddWork(int? freelancerId)
         {
@@ -42,6 +40,11 @@ namespace FreelancerProject.Controllers
         }
 
         public ActionResult UpdateOtherInfo(int? freelancerId)
+        {
+            return RedirectToAction("Edit", "OtherInfoes", new { freelancerId });
+        }
+
+        public ActionResult AddLanguage(int? freelancerId)
         {
             return RedirectToAction("Edit", "OtherInfoes", new { freelancerId });
         }
