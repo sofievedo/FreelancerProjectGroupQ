@@ -13,7 +13,8 @@
     <div class="form-inline">
         <h4>Fritext</h4>
         <form class="form-group">
-            <input type="text" placeholder="Sök" class="form-control" name="searchWord" />
+            @Html.EditorFor(model => model.SearchWord)
+
             <input type="submit" value="Sök" class="btn btn-primary" />
         </form>
     </div>

@@ -158,23 +158,59 @@ namespace FreelancerProject.Controllers
         [HttpPost]
         public ActionResult FilterFreelancers(FilterFreelancersViewModel vm)
         {
-            var newViewModel = new FilterFreelancersViewModel();
-
-            var tempList = db.Freelancer_Competence.Where(c => c.CompetenceId == vm.CompetenceId);
-            if (tempList != null)
-            {
-                newViewModel.Freelancers = new List<FreelancerPerson>();
-                foreach (var item in tempList)
-                {
-                    newViewModel.Freelancers.Add(item.FreelancerPerson);
-                }
-            }
+            //var newViewModel = new FilterFreelancersViewModel();
 
             List<Role> roles = db.Role.ToList();
             ViewBag.Roles = new SelectList(roles, "Id", "RoleName");
 
-            return View(newViewModel);
+            if (vm.SearchWord != null)
+            {
+                return View(FindFreelancersBySearchWord(vm));
+
+            }
+
+            else
+            {
+                return View(FindFreelancersByCompetence(vm));
+            }
+
+           
+
+            //return View();
         }
+
+        private FilterFreelancersViewModel FindFreelancersBySearchWord(FilterFreelancersViewModel vm)
+        {
+            var newViewModel = new FilterFreelancersViewModel();
+
+            var matches = SearchFreelancers.SearchFreelancer(vm.SearchWord);
+
+            newViewModel.Freelancers = matches;
+
+            return newViewModel;
+
+        }
+
+        private FilterFreelancersViewModel FindFreelancersByCompetence(FilterFreelancersViewModel vm)
+        {
+            var tempList = db.Freelancer_Competence.Where(c => c.CompetenceId == vm.CompetenceId);
+
+            var newViewModel = new FilterFreelancersViewModel();
+
+            if (tempList != null)
+                newViewModel.Freelancers = new List<FreelancerPerson>();
+            foreach (var item in tempList)
+            {
+                newViewModel.Freelancers.Add(item.FreelancerPerson);
+            }
+
+            return newViewModel;
+        }
+
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {

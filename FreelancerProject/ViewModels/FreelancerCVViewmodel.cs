@@ -43,8 +43,6 @@ namespace FreelancerProject.ViewModels
             set { Freelancer.Work = value; }
         }
 
-        private OtherInfo otherInfo;
-
         public OtherInfo OtherInfo
         {
             get { return db.OtherInfo.Where(f => f.FreelancerId == Freelancer.Id).FirstOrDefault(); }
