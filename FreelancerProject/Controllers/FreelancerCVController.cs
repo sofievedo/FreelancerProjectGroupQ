@@ -44,6 +44,11 @@ namespace FreelancerProject.Controllers
             return RedirectToAction("Edit", "OtherInfoes", new { freelancerId });
         }
 
+        public ActionResult AddLanguage(int? freelancerId)
+        {
+            return RedirectToAction("Edit", "OtherInfoes", new { freelancerId });
+        }
+
         #region Educations
         public ActionResult AddEducation(int? freelancerId)
         {

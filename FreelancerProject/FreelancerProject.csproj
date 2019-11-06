@@ -286,10 +286,10 @@
     <Content Include="Views\Educations\Delete.cshtml" />
     <Content Include="Views\FreelancerPersons\FilterFreelancers.cshtml" />
     <Content Include="Views\Freelancer_Competence\Edit.cshtml" />
+    <Content Include="Views\Languages\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Languages\" />
     <Folder Include="Views\Role\" />
   </ItemGroup>
   <ItemGroup>
