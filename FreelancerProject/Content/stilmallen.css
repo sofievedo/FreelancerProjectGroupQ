@@ -84,3 +84,8 @@ li{
     margin-right: 50px;
     text-align: center;
 }
+
+#image {
+    height:auto;
+    display:block;
+}

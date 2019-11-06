@@ -15,7 +15,7 @@ namespace FreelancerProject.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Hjälper dig hitta hjälpen du behöver! ";
 
             return View();
         }
