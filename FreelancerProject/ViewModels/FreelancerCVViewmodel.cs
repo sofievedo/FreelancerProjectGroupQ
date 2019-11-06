@@ -51,8 +51,6 @@ namespace FreelancerProject.ViewModels
             set { otherInfo = value; } //TODO: Har ingen fungerande setmetod
         }
 
-        private IOrderedEnumerable<Freelancer_Competence> sortedCompetenceList;
-
         public IOrderedEnumerable<Freelancer_Competence> SortedCompetenceList
         {
             get
