@@ -26,7 +26,7 @@ namespace FreelancerProject.Controllers
         }
         public ActionResult Vy(int? freelancerId)
         {
-            return RedirectToAction("Index", "ProfileFreelancer", new { freelancerId });
+            return RedirectToAction("Index", "Vyforprofile", new { freelancerId = freelancerId });
         }
 
 

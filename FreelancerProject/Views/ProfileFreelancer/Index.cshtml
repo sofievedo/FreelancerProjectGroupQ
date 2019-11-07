@@ -29,7 +29,7 @@
     <br>
 
 
-    <div>@Html.ActionLink("Gå till CV", "Index", "FreelancerCV", routeValues: Model.Id, htmlAttributes: new { @class = "btn btn-primary", @role = "button" }) </div>
+    <div>@Html.ActionLink("Gå till CV", "Index", "FreelancerCV", routeValues: new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" }) </div>
     <br>
 
     <div>@Html.ActionLink("Ändra profil", "Edit", "FreelancerPersons", routeValues: new { freelancerId = Model.Id }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</div>

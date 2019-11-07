@@ -14,7 +14,6 @@ namespace FreelancerProject.Controllers
         // GET: ProfileFreelancer
         public ActionResult Index(int? freelancerId = 1)
         {
-
             var freelancer = db.FreelancerPerson.Find(freelancerId);
 
             return View(freelancer);
