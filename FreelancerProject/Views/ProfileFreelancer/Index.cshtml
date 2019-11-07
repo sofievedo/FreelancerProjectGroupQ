@@ -12,11 +12,11 @@
     <br>
     <br>
     <br>
-    <b><p> @Model.Address</p></b>
+    <p> @Model.Address</p>
     <br>
-    <b><p> @Model.Phonenumber</p></b>
+    <p> @Model.Phonenumber</p>
     <br>
-    <b> <p> @Model.Email</p></b>
+    <p> @Model.Email</p>
     <br>
     @if (Model.LinkToLinkedIn != null)
     {
@@ -29,7 +29,7 @@
     <br>
 
 
-    <div>@Html.ActionLink("Gå till CV", "Index", "FreelancerCV", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" }) </div>
+    <div>@Html.ActionLink("Gå till CV", "Index", "FreelancerCV", routeValues: Model.Id, htmlAttributes: new { @class = "btn btn-primary", @role = "button" }) </div>
     <br>
 
     <div>@Html.ActionLink("Ändra profil", "Edit", "FreelancerPersons", routeValues: new { freelancerId = Model.Id }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</div>

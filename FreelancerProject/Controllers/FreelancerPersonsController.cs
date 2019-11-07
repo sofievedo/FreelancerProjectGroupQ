@@ -26,7 +26,7 @@ namespace FreelancerProject.Controllers
         }
         public ActionResult Vy(int? freelancerId)
         {
-            return RedirectToAction("Index", "Vyforprofile", new { freelancerId });
+            return RedirectToAction("Index", "ProfileFreelancer", new { freelancerId });
         }
 
 
@@ -166,7 +166,6 @@ namespace FreelancerProject.Controllers
             if (vm.SearchWord != null)
             {
                 return View(FindFreelancersBySearchWord(vm));
-
             }
 
             else
