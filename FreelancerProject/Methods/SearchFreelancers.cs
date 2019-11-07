@@ -17,8 +17,8 @@ namespace FreelancerProject.Methods
             List<int> matchingEducations = GetFreelancerIDWithMatchingEducations(searchWord);
             List<int> matcingWorks = GetFreelancerIDWithMatchingWorks(searchWord);
             List<int> matchingCompetences = GetFreelancerIDWithMatchingCompetences(searchWord);
-
-            List<int> matchingIDs = matchingCompetences.Union(matchingEducations).ToList().Union(matcingWorks).ToList();
+            List<int> matchingCoreCompetence = GetFreelancerIDWithMatchingCoreCompetences(searchWord);
+            List<int> matchingIDs = matchingCompetences.Union(matchingEducations).ToList().Union(matcingWorks).ToList().Union(matchingCoreCompetence).ToList();
 
             return ListOFMatchingFreelancers(matchingIDs);
         }
@@ -38,6 +38,11 @@ namespace FreelancerProject.Methods
             return db.Freelancer_Competence.Where(c => c.Competence.CompetenceName.ToLower().Contains(searchWord)).Select(c => c.FreelancerId).ToList();
         }
 
+        private static List<int> GetFreelancerIDWithMatchingCoreCompetences(string searchWord)
+        {
+            return db.OtherInfo.Where(i => i.CoreCompetences.ToLower().Contains(searchWord)).Select(c => c.FreelancerId).ToList();
+        }
+
         private static List<FreelancerPerson> ListOFMatchingFreelancers(List<int> matchingIDs)
         {
             List<FreelancerPerson> matchedFreelancers = new List<FreelancerPerson>();
@@ -49,6 +54,8 @@ namespace FreelancerProject.Methods
 
             return matchedFreelancers;
         }
+
+
 
 
     }
