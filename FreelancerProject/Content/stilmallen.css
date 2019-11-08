@@ -1,6 +1,4 @@
-﻿body {
-
-}
+﻿
 footer{
     text-align:center;
 }
@@ -90,6 +88,8 @@ li{
     display:block;
 }
 
-.text-danger{
 
+
+.ui-id-1{
+    color:aqua
 }

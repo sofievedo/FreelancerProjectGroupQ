@@ -35,7 +35,7 @@ namespace FreelancerProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View(SearchFreelancers.SearchFreelancer(searchWord));
+                return View(SearchFreelancers.GetFreelancersList(searchWord));
             }
 
             return View(db.FreelancerPerson.ToList());
@@ -158,8 +158,6 @@ namespace FreelancerProject.Controllers
         [HttpPost]
         public ActionResult FilterFreelancers(FilterFreelancersViewModel vm)
         {
-            //var newViewModel = new FilterFreelancersViewModel();
-
             List<Role> roles = db.Role.ToList();
             ViewBag.Roles = new SelectList(roles, "Id", "RoleName");
 
@@ -173,16 +171,13 @@ namespace FreelancerProject.Controllers
                 return View(FindFreelancersByCompetence(vm));
             }
 
-           
-
-            //return View();
         }
 
         private FilterFreelancersViewModel FindFreelancersBySearchWord(FilterFreelancersViewModel vm)
         {
             var newViewModel = new FilterFreelancersViewModel();
 
-            var matches = SearchFreelancers.SearchFreelancer(vm.SearchWord);
+            var matches = SearchFreelancers.GetFreelancersList(vm.SearchWord);
 
             newViewModel.Freelancers = matches;
 
@@ -206,14 +201,12 @@ namespace FreelancerProject.Controllers
             return newViewModel;
         }
 
-        public ActionResult GetFreelancerInfoForSearch(string term)
+        public ActionResult SearchCategory(string term)
         {
-            return Json(db.Competence.Where(c => c.CompetenceName.StartsWith(term))
-                .Select(x => new { label = x.CompetenceName })
-                ,JsonRequestBehavior.AllowGet);
+             var result = SearchFreelancers.GetStringList(term);
+
+            return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-
-
 
 
         protected override void Dispose(bool disposing)

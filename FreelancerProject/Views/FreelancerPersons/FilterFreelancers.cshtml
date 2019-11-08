@@ -13,8 +13,8 @@
     <div class="form-inline">
         <h4>Fritext</h4>
         <form class="form-group">
-            @Html.EditorFor(model => model.SearchWord)
-
+            @Html.EditorFor(model => model.SearchWord, new { @class = "form-control" })
+            
             <input type="submit" value="Sök" class="btn btn-primary" />
         </form>
     </div>
@@ -22,6 +22,7 @@
 <button style="margin-top:2px" class="btn btn-default" onclick="location.href='@Url.Action("FilterFreelancers")'"> Rensa sökning </button>
 <br />
 <hr />
+
 
 @using (Html.BeginForm())
 {
@@ -77,16 +78,24 @@
             </tr>
 
         }
-
     </tbody>
 </table>
 
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval"),
+    @Scripts.Render("~/bundles/jqueryui")
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/DropdownForCompetences.js"></script>
+
+    <script>
+            $("#SearchWord").autocomplete({
+                        source: '@Url.Action("SearchCategory", "FreelancerPersons")'
+                    });
+
+    </script>
+
 
 
 }

@@ -9,13 +9,36 @@ namespace FreelancerProject
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-3.3.1.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+            "~/Scripts/jquery-ui-{version}.js",
+            "~/Scripts/jquery-ui-1.12.1.js"));
+
+
+
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
+            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
+                "~/Content/themes/base/jquery.ui.autocomplete.css",
+                "~/Content/themes/base/jquery.ui.core.css",
+                "~/Content/themes/base/jquery.ui.resizable.css",
+                "~/Content/themes/base/jquery.ui.selectable.css",
+                "~/Content/themes/base/jquery.ui.accordion.css",
+                "~/Content/themes/base/jquery.ui.autocomplete.css",
+                "~/Content/themes/base/jquery.ui.button.css",
+                "~/Content/themes/base/jquery.ui.dialog.css",
+                "~/Content/themes/base/jquery.ui.slider.css",
+                "~/Content/themes/base/jquery.ui.tabs.css",
+                "~/Content/themes/base/jquery.ui.datepicker.css",
+                "~/Content/themes/base/jquery.ui.progressbar.css",
+                "~/Content/themes/base/jquery.ui.theme.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
@@ -24,7 +47,10 @@ namespace FreelancerProject
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrapBS.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css"
+                      ));
+
+
         }
     }
 }
