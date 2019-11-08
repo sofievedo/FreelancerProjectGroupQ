@@ -15,6 +15,14 @@ namespace FreelancerProject.ViewModels
         public int RoleId { get; set; }
         public List<FreelancerPerson> Freelancers { get; set; }
 
+        public List<Competence> Competences { get
+            {
+                return db.Competence.ToList();
+            }
+        }
+
+        public Competence Competence{get; set;}
+
         public string SearchWord { get; set; }
 
         public FilterFreelancersViewModel()

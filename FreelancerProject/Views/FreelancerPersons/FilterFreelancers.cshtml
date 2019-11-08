@@ -70,10 +70,10 @@
                         @info.CoreCompetences
                     </td>
                 }
-                    <td>
-                        @Html.ActionLink("Se profil", "Vy", new { freelancerId = item.Id })
+                <td>
+                    @Html.ActionLink("Se profil", "Vy", new { freelancerId = item.Id })
 
-                    </td>
+                </td>
             </tr>
 
         }
@@ -84,8 +84,11 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/DropdownForCompetences.js"></script>
+
+
 }
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/DropdownForCompetences.js"></script>
 
 

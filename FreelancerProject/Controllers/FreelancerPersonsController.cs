@@ -206,7 +206,12 @@ namespace FreelancerProject.Controllers
             return newViewModel;
         }
 
-
+        public ActionResult GetFreelancerInfoForSearch(string term)
+        {
+            return Json(db.Competence.Where(c => c.CompetenceName.StartsWith(term))
+                .Select(x => new { label = x.CompetenceName })
+                ,JsonRequestBehavior.AllowGet);
+        }
 
 
 
