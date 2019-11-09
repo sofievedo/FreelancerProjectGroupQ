@@ -1,3 +1,39 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //TODO: Se om man kan få koll på användaren mellan sidor genom detta: 
+    //var user = System.Web.HttpContext.Current.User.Identity.Name;
+
+    string ActiveController = Convert.ToString(HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"]);
+    switch (ActiveController)
+    {
+        case "Educations":
+            Layout = "~/Views/Shared/_Layout_Freelancer.cshtml";
+            break;
+        case "Freelancer_Competence":
+            Layout = "~/Views/Shared/_Layout_Freelancer.cshtml";
+            break;
+        case "Languages":
+            Layout = "~/Views/Shared/_Layout_Freelancer.cshtml";
+            break;
+        case "OtherInfoes":
+            Layout = "~/Views/Shared/_Layout_Freelancer.cshtml";
+            break;
+        case "Profilefreelancer":
+            Layout = "~/Views/Shared/_Layout_Freelancer.cshtml";
+            break;
+        case "ProfileFreelancer":
+            Layout = "~/Views/Shared/_Layout_Freelancer.cshtml";
+            break;
+        case "Works":
+            Layout = "~/Views/Shared/_Layout_Freelancer.cshtml";
+            break;
+        case "Customers":
+            Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+            break;
+
+        default:
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+    }
+
+
 }

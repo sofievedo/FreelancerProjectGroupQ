@@ -10,6 +10,8 @@ namespace FreelancerProject
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+
+        public int UserType { get; set; }
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

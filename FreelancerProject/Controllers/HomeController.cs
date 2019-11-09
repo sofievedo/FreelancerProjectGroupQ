@@ -13,6 +13,22 @@ namespace FreelancerProject.Controllers
             return View();
         }
 
+        public ActionResult LoginInAsFreelancer(int id = 1)
+        {
+            Session["userType"] = 1;
+            Session["freelancerId"] = id;
+
+           return RedirectToAction("Index", "Profilefreelancer");
+        }
+
+        public ActionResult LoginInAsCostumer(int id = 1)
+        {
+            Session["userType"] = 2;
+            Session["customerId"] = id;
+
+            return RedirectToAction("FilterFreelancers", "FreelancerPersons");
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Hjälper dig hitta hjälpen du behöver! ";

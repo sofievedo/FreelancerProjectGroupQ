@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Hitta frilansare";
+    Layout = "~/Views/Shared/_Layout_Customer.cshtml";
+
 }
 <br />
 <br />
@@ -14,7 +16,7 @@
         <h4>Fritext</h4>
         <form class="form-group">
             @Html.EditorFor(model => model.SearchWord, new { @class = "form-control" })
-            
+
             <input type="submit" value="Sök" class="btn btn-primary" />
         </form>
     </div>

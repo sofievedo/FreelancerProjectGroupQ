@@ -145,7 +145,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Methods\GetStringListForAutoComplete.cs" />
+    <Compile Include="Methods\Login.cs" />
     <Compile Include="Methods\SearchFreelancers.cs" />
     <Compile Include="Models\Competence.cs">
       <DependentUpon>FreelancerProjectModel.tt</DependentUpon>
@@ -320,7 +320,6 @@
     <Content Include="Views\Works\Delete.cshtml" />
     <Content Include="Views\Works\Details.cshtml" />
     <Content Include="Views\Works\Edit.cshtml" />
-    <Content Include="Views\ProfileFreelancer\ProfileFreelancer.cshtml" />
     <Content Include="Views\FreelancerCV\Index.cshtml" />
     <Content Include="Views\ProfileFreelancer\Index.cshtml" />
     <Content Include="Views\ProfileCustomer\Index.cshtml" />
@@ -331,6 +330,8 @@
     <Content Include="Views\FreelancerPersons\FilterFreelancers.cshtml" />
     <Content Include="Views\Freelancer_Competence\Edit.cshtml" />
     <Content Include="Views\Languages\Edit.cshtml" />
+    <Content Include="Views\Shared\_Layout_Customer.cshtml" />
+    <Content Include="Views\Shared\_Layout_Freelancer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
