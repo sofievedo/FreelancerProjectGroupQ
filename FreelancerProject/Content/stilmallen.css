@@ -2,9 +2,6 @@
 footer{
     text-align:center;
 }
-.länkarGL {
-    list-style: none;
-}
 
 .boldli{
     font-weight: bold;
@@ -41,7 +38,7 @@ footer{
     margin-top: 25%;
 }
 
-#DemoCanvas {
+#Canvas {
     text-align: center;
 }
 
