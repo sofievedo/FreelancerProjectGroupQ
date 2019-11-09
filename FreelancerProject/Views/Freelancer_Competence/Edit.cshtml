@@ -40,6 +40,8 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Tillbaka till CV", "Index", "FreelancerCV")
-</div>
+    <div>
+        @Html.ActionLink("Tillbaka till CV", "Index", "FreelancerCV") | 
+        @Html.ActionLink("Ta bort", "Delete", new { id = Model.CompetenceId, freelancerId = Model.FreelancerId})
+
+    </div>

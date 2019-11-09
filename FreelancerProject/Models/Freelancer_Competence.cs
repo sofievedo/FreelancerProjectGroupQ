@@ -11,13 +11,17 @@ namespace FreelancerProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Freelancer_Competence
     {
         public int FreelancerId { get; set; }
+        [DisplayName("Kompetens")]
         public int CompetenceId { get; set; }
+
         public Nullable<int> Ranking { get; set; }
-    
+
+        [DisplayName("Kompetens")]
         public virtual Competence Competence { get; set; }
         public virtual FreelancerPerson FreelancerPerson { get; set; }
     }

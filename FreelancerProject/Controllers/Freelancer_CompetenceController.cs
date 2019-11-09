@@ -20,10 +20,11 @@ namespace FreelancerProject.Controllers
         public ActionResult Create(int? freelancerId = 1) //TODO: Ta bort variabeln
         {
             List<Role> roles = db.Role.ToList();
-            List<int> rankingList = new List<int>() { 1, 2, 3, 4, 5 };
-            ViewBag.FreelancerId = freelancerId;
             ViewBag.Roles = new SelectList(roles, "Id", "RoleName");
+            List<int> rankingList = new List<int>() { 1, 2, 3, 4, 5 };
             ViewBag.Ranking = new SelectList(rankingList);
+            ViewBag.FreelancerId = freelancerId;
+
 
             FreelancerCompetenceViewModel viewModel = new FreelancerCompetenceViewModel(freelancerId);
 
@@ -45,11 +46,11 @@ namespace FreelancerProject.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Freelancer_Competence.Add(freelancer_Competence);
-
                 try
                 {
+                    db.Freelancer_Competence.Add(freelancer_Competence);
                     db.SaveChanges();
+                    RedirectToAction("Index", "FreelancerCV", new { id = viewModel.FreelancerId });
                 }
                 catch (Exception)
                 {
@@ -101,11 +102,37 @@ namespace FreelancerProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "FreelancerCV", new { viewModel.FreelancerId });
             }
-            List<int?> rankingList = new List<int?>() { 1, 2, 3, 4, 5 }; //TODO: använd lista från viewmodel istället. 
+            List<int?> rankingList = new List<int?>() { 1, 2, 3, 4, 5 }; 
 
             ViewBag.Ranking = new SelectList(rankingList);
             return View(viewModel);
         }
+
+        public ActionResult Delete(int? id, int? freelancerId)
+        {
+            if (id == null || freelancerId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Freelancer_Competence freelancer_CompetenceMatch = db.Freelancer_Competence.Where(c => c.CompetenceId == id).Where(c => c.FreelancerId == freelancerId).FirstOrDefault() ;
+            if (freelancer_CompetenceMatch == null)
+            {
+                return HttpNotFound();
+            }
+            return View(freelancer_CompetenceMatch);
+        }
+
+        // POST: Educations/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id, int freelancerId)
+        {
+            Freelancer_Competence freelancer_Competence = db.Freelancer_Competence.Where(c => c.CompetenceId == id).Where(c => c.FreelancerId == freelancerId).FirstOrDefault();
+            db.Freelancer_Competence.Remove(freelancer_Competence);
+            db.SaveChanges();
+            return RedirectToAction("Index", "FreelancerCV", new { freelancer_Competence.FreelancerId });
+        }
+
 
         protected override void Dispose(bool disposing)
         {
