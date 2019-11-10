@@ -54,30 +54,35 @@
             <th>Efternamn</th>
             <th>Kärnkompetenser</th>
             <th>Profil</th>
+            <th>CV</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Freelancers)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Firstname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lastname)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
 
-                @foreach (var info in item.OtherInfo)
-                {
-                    <td>
-                        @info.CoreCompetences
-                    </td>
-                }
+            @foreach (var info in item.OtherInfo)
+            {
                 <td>
-                    @Html.ActionLink("Se profil", "Vy", new { freelancerId = item.Id })
-
+                    @info.CoreCompetences
                 </td>
-            </tr>
+            }
+                       
+            <td>
+                @Html.ActionLink("Se profil", "Vy", new { freelancerId = item.Id })
+            </td>
+
+            <td>
+               <a href="@Url.Action("CustomerView","FreelancerCV",new { id = item.Id })">Se CV</a>
+            </td>
+        </tr>
 
         }
     </tbody>
@@ -96,6 +101,12 @@
                         source: '@Url.Action("SearchCategory", "FreelancerPersons")'
                     });
 
+    </script>
+
+    <script >
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 
 

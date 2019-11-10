@@ -333,6 +333,7 @@
     <Content Include="Views\Shared\_Layout_Customer.cshtml" />
     <Content Include="Views\Shared\_Layout_Freelancer.cshtml" />
     <Content Include="Views\Freelancer_Competence\Delete.cshtml" />
+    <Content Include="Views\FreelancerCV\CustomerView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

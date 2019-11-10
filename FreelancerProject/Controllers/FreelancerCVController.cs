@@ -22,6 +22,13 @@ namespace FreelancerProject.Controllers
             return View(freelancer);
         }
 
+        public ActionResult CustomerView(int? id = 1)
+        {
+            var freelancer = new FreelancerCVViewmodel(id);
+
+            return View(freelancer);
+        }
+
         public ActionResult AddWork(int? freelancerId)
         {
             //EducationsController educationsController = new EducationsController();
