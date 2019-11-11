@@ -22,15 +22,17 @@ namespace FreelancerProject.Models
         public string DriversLicence { get; set; }
         [DisplayName("Språk")]
         public string Languages { get; set; }
+
         [DisplayName("Kärnförmågor")]
         [StringLength(100, ErrorMessage = "Överstiger maxgränsen på 100 tecken")]
         public string CoreCompetences { get; set; }
+
         [DisplayName("Min profil")]
         [StringLength(500, ErrorMessage = "Överstiger maxgränsen på 100 tecken")]
         public string ProfileMessage { get; set; }
 
         public string TestText { get; set; }
-    
+
         public virtual FreelancerPerson FreelancerPerson { get; set; }
     }
 }

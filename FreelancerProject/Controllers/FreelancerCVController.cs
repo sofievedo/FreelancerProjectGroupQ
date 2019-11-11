@@ -62,7 +62,8 @@ namespace FreelancerProject.Controllers
             db.Entry(customer).State = EntityState.Modified;
             db.SaveChanges();
 
-            return RedirectToAction("CustomerView", freelancerId);
+            //return RedirectToAction("CustomerView", freelancerId);
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
 

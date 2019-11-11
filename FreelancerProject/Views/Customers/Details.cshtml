@@ -4,11 +4,15 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Kund</h2>
+<h2>@Model.Firstname @Model.Lastname</h2>
+<h4>@Model.Company</h4>
 
 <div>
-    @*<h4>Kund</h4>*@
     <hr />
+    <h3>Mina kontaktuppgifter</h3>
+    <br />
+
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Firstname)
@@ -82,38 +86,37 @@
             @Html.DisplayFor(model => model.Company)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GetNotificationByEmail)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GetNotificationByEmail)
-        </dd>
 
 
 
     </dl>
-</div>
+    @Html.ActionLink("Ändra mina uppgifter", "Edit", new { id = Model.Id })
 
-@if (Model.FreelancerPerson.Count >0)
+</div>
+<hr />
+
+@if (Model.FreelancerPerson.Count > 0)
 {
     <div class="col-sm-pull-10">
         <h3>Sparade frilansare</h3>
         <br />
 
-        <table class="table">
+        <table class="table table-hover">
             <tr>
-                <th>
+                <th colspan="1">
                     Förnamn
                 </th>
                 <th>
                     Efternamn
                 </th>
-                <th>
+                <th colspan="3">
                     Kärnkompetenser
                 </th>
+                <th>E-post</th>
                 <th>
-                    Profil
+                    Länkar
                 </th>
+                <th>Hantera</th>
 
                 <th>
 
@@ -123,40 +126,41 @@
             @foreach (var item in Model.FreelancerPerson)
             {
                 <tr>
-                    <td>
+                    <td colspan="1">
                         @Html.DisplayFor(modelItem => item.Firstname)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Lastname)
                     </td>
-                    <td>
-                        @foreach (var info in item.OtherInfo)
+
+                    @foreach (var info in item.OtherInfo)
+                    {
+                        if (info.CoreCompetences == null)
                         {
-                            @Html.Display(info.CoreCompetences)
+                            <td colspan="3">N/A</td>
                         }
+                        else
+                        {
+                            <td colspan="3">@info.CoreCompetences</td>
+                        }
+                    }
+
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>
+                        <a href="@Url.Action("Index", "Vyforprofile", new { id = item.Id })"><i class="fas fa-external-link-alt"></i> Till profil</a>  |
+                        <a href="@Url.Action("CustomerView","FreelancerCV",new { id = item.Id })"><i class="fas fa-external-link-alt"></i> Till CV</a>
                     </td>
                     <td>
-                       @Html.ActionLink("Se profil", "Index", "FreelancerCV", new { id = item.Id }, new  { htmlAttributes = new { @class = "form-control" } })
-                    </td>
-
-
-
-                    <!--TODO: Lägg till dessa länkar om man är inloggad som användare? -->
-                    <td>
-                        Ta bort 
+                        <a href="@Url.Action("DeleteFreelancer","FreelancerCV", new { freelancerId = item.Id, customerId = Model.Id })"><i class="far fa-trash-alt"></i> Ta bort</a>
                     </td>
                 </tr>
             }
 
         </table>
     </div>
-
-
-
     <hr />
 }
 <p>
-    @Html.ActionLink("Ändra", "Edit", new { id = Model.Id }) |
-   
+
     <a href="javascript:history.back()">Tillbaka</a>
 </p>
