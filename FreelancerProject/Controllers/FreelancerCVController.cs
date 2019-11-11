@@ -3,7 +3,9 @@ using FreelancerProject.Models;
 using FreelancerProject.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,20 +16,55 @@ namespace FreelancerProject.Controllers
         private FreelancerEntities db = new FreelancerEntities();
 
         // GET: FreelancerCV
-        public ActionResult Index(int? id=1)
+        public ActionResult Index(int? id = 1)
         {
             var freelancer = new FreelancerCVViewmodel(id);
-
 
             return View(freelancer);
         }
 
+        [HttpGet]
         public ActionResult CustomerView(int? id = 1)
         {
-            var freelancer = new FreelancerCVViewmodel(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-            return View(freelancer);
+            var freelancerId = 1; //TODO: Ta bort hårdkodning
+            var viewModel = new FreelancerCVViewmodel(id, freelancerId);
+
+            return View(viewModel);
         }
+
+        public ActionResult SaveFreelancer(int id)
+        {
+            var customer = db.Customer.Find(1); //TODO: Ta bort hårdkodning, skicka in som variabel
+            var freelancer = db.FreelancerPerson.Find(id);
+
+            if (!customer.FreelancerPerson.Contains(freelancer))
+            {
+        
+                customer.FreelancerPerson.Add(freelancer);
+                db.SaveChanges();
+            }
+            return RedirectToAction("CustomerView", id);
+
+        }
+
+        public ActionResult DeleteFreelancer(int freelancerId, int customerId )
+        {
+            var customer = db.Customer.Find(customerId); 
+            var freelancer = db.FreelancerPerson.Find(freelancerId);
+
+            customer.FreelancerPerson.Remove(freelancer);
+
+            db.Entry(customer).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("CustomerView", freelancerId);
+        }
+
 
         public ActionResult AddWork(int? freelancerId)
         {

@@ -5,9 +5,29 @@
 }
 <br />
 
-<h2> @Html.DisplayFor(model => model.Freelancer.Firstname) @Html.DisplayFor(model => model.Freelancer.Lastname)</h2>
-<div>
-<button style="" class="btn btn-primary">Spara</button>
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <h2> @Html.DisplayFor(model => model.Freelancer.Firstname) @Html.DisplayFor(model => model.Freelancer.Lastname)</h2>
+        </div>
+
+        @if (Model.FreelancerIsSaved)
+        {
+            <div class="col">
+
+                @Html.ActionLink("Ta bort från lista", "DeleteFreelancer",
+               routeValues: new { freelancerId = Model.Freelancer.Id, customerId = Model.Customer.Id}, htmlAttributes: new { @class = "btn btn-danger", @role = "button" })
+            </div>
+        }
+        else
+        {
+            <div class="col">
+                @Html.ActionLink("Spara i min lista", "SaveFreelancer",
+               routeValues: new { id = Model.Freelancer.Id}, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
+            </div>
+        }
+
+    </div>
 </div>
 <hr />
 <div class="container">
@@ -157,9 +177,7 @@
                     @item.Language
                 </span>
             }
-            <a>
-                <span class="badge badge-pill badge-success"><i class="fas fa-plus-circle"></i>Lägg till språk</span>
-            </a>
+
 
             <h3>Kompetenser</h3>
 
@@ -239,57 +257,61 @@
 
         </table>
     </div>
-</div>
-<hr />
-<div class="col-sm-pull-10">
+    <br />
+    <hr />
 
-    <h3>Tidigare arbeten</h3>
-    @Html.ActionLink("Lägg till arbete", "AddWork", new { freelancerId = Model.Freelancer.Id })
+    <div class="col-sm-pull-10">
 
-    <table class="table">
-        <tr>
-            <th>
-                Roll
-            </th>
-            <th>
-                Företag
-            </th>
-            <th>
-                Startdatum
-            </th>
-            <th>
-                Slutdatum
-            </th>
-            <th>
-                Arbetsbeskrivning
-            </th>
+        <h3>Tidigare arbeten</h3>
 
-        </tr>
-
-        @foreach (var item in Model.Works)
-        {
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Role)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Company)
-                </td>
-                <td>
-                    @item.StartDate.ToShortDateString()
-                </td>
-                <td>
-                    @item.EndDate.ToString()
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkDescription)
-                </td>
+                <th>
+                    Roll
+                </th>
+                <th>
+                    Företag
+                </th>
+                <th>
+                    Startdatum
+                </th>
+                <th>
+                    Slutdatum
+                </th>
+                <th>
+                    Arbetsbeskrivning
+                </th>
 
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model.Works)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+                    <td>
+                        @item.StartDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @item.EndDate.ToString()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WorkDescription)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+
 </div>
+<hr />
+
 
 @Html.ActionLink("Tillbaka", "FilterFreelancers", "FreelancerPersons")
 

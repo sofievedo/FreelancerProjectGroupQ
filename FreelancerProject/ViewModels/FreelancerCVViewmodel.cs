@@ -11,6 +11,8 @@ namespace FreelancerProject.ViewModels
         private FreelancerEntities db = new FreelancerEntities();
 
         public FreelancerPerson Freelancer { get; set; }
+        public Customer Customer { get; set; }
+
 
         private string birthdayString;
 
@@ -57,9 +59,30 @@ namespace FreelancerProject.ViewModels
         }
 
 
+        public bool FreelancerIsSaved
+        {
+            get {
+                if (Customer.FreelancerPerson.Contains(Freelancer))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }}
+        }
+
+
+
+
         public FreelancerCVViewmodel(int? id = 1) //TODO: Ta bort hårdkodning
         {
             Freelancer = db.FreelancerPerson.Find(id);
-        }  
+        }
+        public FreelancerCVViewmodel(int? freelancerId, int customerId) //TODO: Ta bort hårdkodning
+        {
+            Freelancer = db.FreelancerPerson.Find(freelancerId);
+            Customer = db.Customer.Find(customerId); 
+        }
     }
 }
