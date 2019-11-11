@@ -156,9 +156,9 @@
                     @item.Language
                 </span>
             }
-                <a>
-                    <span class="badge badge-pill badge-success"><i class="fas fa-plus-circle"></i>Lägg till språk</span>
-                </a>
+            <a>
+                <span class="badge badge-pill badge-success"><i class="fas fa-plus-circle"></i>Lägg till språk</span>
+            </a>
 
             <h3>Kompetenser</h3>
 
@@ -291,7 +291,6 @@
                     @Html.DisplayFor(modelItem => item.WorkDescription)
                 </td>
 
-                <!--TODO: Lägg till dessa länkar om man är inloggad som användare? -->
                 <td>
                     @Html.ActionLink("Ändra", "UpdateWork", new { id = item.Id }) |
                     @Html.ActionLink("Läs mer", "DetailsWork", new { id = item.Id }) |
@@ -304,4 +303,13 @@
 </div>
 
 @Html.ActionLink("Tillbaka", "Index", "ProfileFreelancer")
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval"),
+    @Scripts.Render("~/bundles/jqueryui"),
+    <script src="~/Scripts/iconSpin.js"></script>
+}
+
 
