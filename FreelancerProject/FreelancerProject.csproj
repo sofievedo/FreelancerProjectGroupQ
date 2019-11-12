@@ -315,7 +315,6 @@
     <Content Include="Views\OtherInfoes\Delete.cshtml" />
     <Content Include="Views\OtherInfoes\Details.cshtml" />
     <Content Include="Views\OtherInfoes\Edit.cshtml" />
-    <Content Include="Views\OtherInfoes\Index.cshtml" />
     <Content Include="Views\Works\Create.cshtml" />
     <Content Include="Views\Works\Delete.cshtml" />
     <Content Include="Views\Works\Details.cshtml" />

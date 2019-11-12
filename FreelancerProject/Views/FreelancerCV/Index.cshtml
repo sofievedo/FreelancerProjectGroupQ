@@ -244,62 +244,63 @@
 
         </table>
     </div>
-</div>
-<hr />
-<div class="col-sm-pull-10">
+    <hr />
+    <div class="col-sm-pull-10">
 
-    <h3>Tidigare arbeten</h3>
-    @Html.ActionLink("Lägg till arbete", "AddWork", new { freelancerId = Model.Freelancer.Id })
+        <h3>Tidigare arbeten</h3>
+        @Html.ActionLink("Lägg till arbete", "AddWork", new { freelancerId = Model.Freelancer.Id })
 
-    <table class="table">
-        <tr>
-            <th>
-                Roll
-            </th>
-            <th>
-                Företag
-            </th>
-            <th>
-                Startdatum
-            </th>
-            <th>
-                Slutdatum
-            </th>
-            <th>
-                Arbetsbeskrivning
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model.Works)
-        {
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Role)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Company)
-                </td>
-                <td>
-                    @item.StartDate.ToShortDateString()
-                </td>
-                <td>
-                    @item.EndDate.ToString()
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkDescription)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Ändra", "UpdateWork", new { id = item.Id }) |
-                    @Html.ActionLink("Läs mer", "DetailsWork", new { id = item.Id }) |
-                    @Html.ActionLink("Ta bort", "DeleteWork", new { id = item.Id })
-                </td>
+                <th>
+                    Roll
+                </th>
+                <th>
+                    Företag
+                </th>
+                <th>
+                    Startdatum
+                </th>
+                <th>
+                    Slutdatum
+                </th>
+                <th>
+                    Arbetsbeskrivning
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model.Works)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+                    <td>
+                        @item.StartDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @item.EndDate.ToString()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WorkDescription)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Ändra", "UpdateWork", new { id = item.Id }) |
+                        @Html.ActionLink("Läs mer", "DetailsWork", new { id = item.Id }) |
+                        @Html.ActionLink("Ta bort", "DeleteWork", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
 </div>
+
 
 @Html.ActionLink("Tillbaka", "Index", "ProfileFreelancer")
 

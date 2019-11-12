@@ -14,13 +14,6 @@ namespace FreelancerProject.Controllers
     {
         private FreelancerEntities db = new FreelancerEntities();
 
-        // GET: OtherInfoes
-        public ActionResult Index()
-        {
-            var otherInfo = db.OtherInfo.Include(o => o.FreelancerPerson);
-            return View(otherInfo.ToList());
-        }
-
         // GET: OtherInfoes/Details/5
         public ActionResult Details(int? id)
         {
