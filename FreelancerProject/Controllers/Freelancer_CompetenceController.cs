@@ -17,7 +17,7 @@ namespace FreelancerProject.Controllers
         // GET: Freelancer_Competence
 
         [HttpGet]
-        public ActionResult Create(int? freelancerId = 1) //TODO: Ta bort variabeln
+        public ActionResult Create(int? freelancerId)
         {
             List<Role> roles = db.Role.ToList();
             ViewBag.Roles = new SelectList(roles, "Id", "RoleName");

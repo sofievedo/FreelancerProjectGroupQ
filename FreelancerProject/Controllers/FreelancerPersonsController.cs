@@ -147,7 +147,7 @@ namespace FreelancerProject.Controllers
 
             var viewModel = new FilterFreelancersViewModel
             {
-                Freelancers = db.FreelancerPerson.ToList() //TODO: Fortsätt här. Söka på ranking
+                Freelancers = db.FreelancerPerson.ToList() 
             };
             ViewBag.Ranking = new SelectList(viewModel.RankingList);
             List<Role> roles = db.Role.ToList();

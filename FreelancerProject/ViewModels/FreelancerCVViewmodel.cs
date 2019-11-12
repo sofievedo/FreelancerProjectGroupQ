@@ -79,7 +79,7 @@ namespace FreelancerProject.ViewModels
         {
             Freelancer = db.FreelancerPerson.Find(id);
         }
-        public FreelancerCVViewmodel(int? freelancerId, int customerId) //TODO: Ta bort hårdkodning
+        public FreelancerCVViewmodel(int? freelancerId, int customerId)
         {
             Freelancer = db.FreelancerPerson.Find(freelancerId);
             Customer = db.Customer.Find(customerId); 

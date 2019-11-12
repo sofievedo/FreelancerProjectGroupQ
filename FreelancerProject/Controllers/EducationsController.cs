@@ -39,7 +39,10 @@ namespace FreelancerProject.Controllers
         // GET: Educations/Create
         public ActionResult Create(int? freelancerId)
         {
-            //TODO: lägg till vad som händer om int är null. 
+            if (freelancerId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             ViewBag.FreelancerId = freelancerId;
             return View();
         }

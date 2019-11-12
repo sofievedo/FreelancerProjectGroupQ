@@ -40,7 +40,8 @@
                 @Html.DropDownListFor(model => model.CompetenceId, new SelectList(" "), "Välj kompetens", new { @class = "form-control col-md-8", @style = "width: 105%" })
             </div>
 
-            <div class="col-md-10" style="width: 20%; margin: 10px;">
+            <div class="col-md-8" style="width: 20%; margin: 10px;">
+                @* TODO: Lös så den håller bredd vid mindre skärm *@
                 <div id="slider"></div>
                 <label style="font-weight: lighter;">Lägsta kompetensnivå: </label>
                 <label id="value">5</label>
@@ -52,7 +53,6 @@
 
         <div class="form-group">
             <button style="margin-top:2px" class="btn btn-default" onclick="location.href='@Url.Action("FilterFreelancers")'"> Rensa sökning </button>
-
         </div>
 
     </div>
@@ -64,7 +64,8 @@
         <tr>
             <th>Förnamn</th>
             <th>Efternamn</th>
-            <th>Kärnkompetenser</th>
+            <th>Kompetenser</th>
+            <th>Mer om mig</th>
             <th>Profil</th>
             <th>CV</th>
         </tr>
@@ -80,13 +81,35 @@
                     @Html.DisplayFor(modelItem => item.Lastname)
                 </td>
 
-                @foreach (var info in item.OtherInfo)
-                {
-                    <td>
-                        @info.CoreCompetences
-                    </td>
-                }
+                @*@foreach (var info in item.OtherInfo)
+                    {
+                        <td>
+                            @info.CoreCompetences
+                        </td>
+                    }*@
+                <td>
+                    @foreach (var competence in item.Freelancer_Competence)
+                    {
 
+                        <span class="badge badge-light" data-toggle="popover" data-trigger="hover"
+                              data-container="body" data-placement="top" style="background-color:cadetblue;"
+                              data-content="Ranking: @competence.Ranking">
+                            @competence.Competence.CompetenceName
+                        </span>
+
+                    }
+                </td>
+                <td>
+                    @foreach (var info in item.OtherInfo)
+                    {
+                        <i class="fas fa-user-circle fa-2x" data-toggle="popover" data-trigger="hover"
+                           data-container="body" data-placement="top" style="color:deepskyblue"
+                           data-html="true"
+                           title="Om mig"
+                           data-content="<b>Kärnkompetenser:</b> @info.CoreCompetences.<br> <b>Om mig:</b> @info.ProfileMessage">
+                        </i>
+                    }
+                </td>
                 <td>
                     @Html.ActionLink("Se profil", "Vy", new { freelancerId = item.Id })
                 </td>
@@ -95,7 +118,6 @@
                     <a href="@Url.Action("CustomerView","FreelancerCV",new { id = item.Id })">Se CV</a>
                 </td>
             </tr>
-
         }
     </tbody>
 </table>
@@ -108,28 +130,13 @@
 
     <script src="~/Scripts/MyScripts/DropdownForCompetences.js"></script>
     <script src="~/Scripts/MyScripts/slider.js"></script>
-    <script>
-            $("#SearchWord").autocomplete({
-                        source: '@Url.Action("SearchCategory", "FreelancerPersons")'
-                    });
-    </script>
+    <script src="~/Scripts/MyScripts/popover.js"></script>
 
     <script>
-        $("#slider").slider({
-            min: 1,
-            max: 5,
-            range: "max",
-            value: 5,
-            change: function (event, ui) {
-                $("#value").text($("#slider").slider("value"));
-                $("#LowestRankToFilter").val($("#slider").slider("value"));
-            }
+        $("#SearchWord").autocomplete({
+            source: '@Url.Action("SearchCategory", "FreelancerPersons")'
         });
     </script>
-
-
-
-
 
 }
 

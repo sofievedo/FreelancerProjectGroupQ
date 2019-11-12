@@ -21,25 +21,21 @@ namespace FreelancerProject.ViewModels
 
 
         public int Ranking { get; set; }
-
-
-
+               
         public Freelancer_Competence Freelancer_Competence { get; set; }
         public FreelancerPerson Freelancer { get; set; }
 
         public List<Freelancer_Competence> FreelancersCompetences { get; set; }
 
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="freelancerID"></param>
-        public FreelancerCompetenceViewModel(int? id = 1) //TODO: Ta bort hårdkodning
+        public FreelancerCompetenceViewModel(int? id)
         {
             Freelancer = db.FreelancerPerson.Find(id);
             FreelancersCompetences = db.Freelancer_Competence.Where(f => f.FreelancerId == id).ToList();
-            FreelancerId = id;
-            
+            FreelancerId = id;            
         }
 
         public FreelancerCompetenceViewModel() 

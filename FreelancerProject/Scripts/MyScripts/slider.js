@@ -5,6 +5,6 @@
     value: 5,
     change: function (event, ui) {
         $("#value").text($("#slider").slider("value"));
-
+        $("#LowestRankToFilter").val($("#slider").slider("value"));
     }
 });
