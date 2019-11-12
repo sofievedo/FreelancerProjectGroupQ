@@ -15,7 +15,7 @@
     <div class="form-inline">
         <h4>Fritext</h4>
         <form class="form-group">
-            @Html.EditorFor(model => model.SearchWord, new { @class = "form-control" })
+            @Html.TextBoxFor(model => model.SearchWord, new { @class = "form-control" })
 
             <input type="submit" value="Sök" class="btn btn-primary" />
         </form>
@@ -32,9 +32,21 @@
 
     <div class="form-inline">
         <h4>Filtrera på kompetens</h4>
-        <div>
-            @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, "Välj roll", new { @class = "form-control" })
-            @Html.DropDownListFor(model => model.CompetenceId, new SelectList(" "), "Välj kompetens", new { @class = "form-control" })
+        <div class="row">
+            <div class="col-md-2">
+                @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, "Välj roll", new { @class = "form-control col-md-8", @style = "width: 105%" })
+            </div>
+            <div class="col-md-2">
+                @Html.DropDownListFor(model => model.CompetenceId, new SelectList(" "), "Välj kompetens", new { @class = "form-control col-md-8", @style = "width: 105%" })
+            </div>
+
+            <div class="col-md-10" style="width: 20%; margin: 10px;">
+                <div id="slider"></div>
+                <label style="font-weight: lighter;">Lägsta kompetensnivå: </label>
+                <label id="value">5</label>
+                @Html.HiddenFor(m => m.LowestRankToFilter)
+            </div>
+
             <input type="submit" value="Sök" class="btn btn-primary" />
         </div>
 
@@ -60,29 +72,29 @@
     <tbody>
         @foreach (var item in Model.Freelancers)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Firstname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lastname)
-            </td>
-
-            @foreach (var info in item.OtherInfo)
-            {
+            <tr>
                 <td>
-                    @info.CoreCompetences
+                    @Html.DisplayFor(modelItem => item.Firstname)
                 </td>
-            }
-                       
-            <td>
-                @Html.ActionLink("Se profil", "Vy", new { freelancerId = item.Id })
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastname)
+                </td>
 
-            <td>
-               <a href="@Url.Action("CustomerView","FreelancerCV",new { id = item.Id })">Se CV</a>
-            </td>
-        </tr>
+                @foreach (var info in item.OtherInfo)
+                {
+                    <td>
+                        @info.CoreCompetences
+                    </td>
+                }
+
+                <td>
+                    @Html.ActionLink("Se profil", "Vy", new { freelancerId = item.Id })
+                </td>
+
+                <td>
+                    <a href="@Url.Action("CustomerView","FreelancerCV",new { id = item.Id })">Se CV</a>
+                </td>
+            </tr>
 
         }
     </tbody>
@@ -94,20 +106,28 @@
     @Scripts.Render("~/bundles/jqueryui")
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 
-    <script src="~/Scripts/DropdownForCompetences.js"></script>
-
+    <script src="~/Scripts/MyScripts/DropdownForCompetences.js"></script>
+    <script src="~/Scripts/MyScripts/slider.js"></script>
     <script>
             $("#SearchWord").autocomplete({
                         source: '@Url.Action("SearchCategory", "FreelancerPersons")'
                     });
-
     </script>
 
-    <script >
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+    <script>
+        $("#slider").slider({
+            min: 1,
+            max: 5,
+            range: "max",
+            value: 5,
+            change: function (event, ui) {
+                $("#value").text($("#slider").slider("value"));
+                $("#LowestRankToFilter").val($("#slider").slider("value"));
+            }
+        });
     </script>
+
+
 
 
 

@@ -745,6 +745,7 @@ button.ui-button::-moz-focus-inner {
 .ui-slider.ui-state-disabled .ui-slider-handle,
 .ui-slider.ui-state-disabled .ui-slider-range {
 	filter: inherit;
+
 }
 
 .ui-slider-horizontal {
@@ -761,9 +762,9 @@ button.ui-button::-moz-focus-inner {
 .ui-slider-horizontal .ui-slider-range-min {
 	left: 0;
 }
-.ui-slider-horizontal .ui-slider-range-max {
-	right: 0;
-}
+    .ui-slider-horizontal .ui-slider-range-max {
+        right: 0;
+    }
 
 .ui-slider-vertical {
 	width: .8em;
@@ -898,6 +899,7 @@ body .ui-tooltip {
 }
 .ui-widget.ui-widget-content {
 	border: 1px solid #c5c5c5;
+
 }
 .ui-widget-content {
 	border: 1px solid #dddddd;

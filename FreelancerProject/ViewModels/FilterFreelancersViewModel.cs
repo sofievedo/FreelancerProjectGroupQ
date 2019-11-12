@@ -25,6 +25,10 @@ namespace FreelancerProject.ViewModels
 
         public string SearchWord { get; set; }
 
+        public List<int> RankingList = new List<int> { 1, 2, 3, 4, 5 };
+
+        public int LowestRankToFilter{ get; set; }
+
         public FilterFreelancersViewModel()
         {
            

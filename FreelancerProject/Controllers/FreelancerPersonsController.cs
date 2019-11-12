@@ -144,13 +144,14 @@ namespace FreelancerProject.Controllers
 
         public ActionResult FilterFreelancers()
         {
-            List<Role> roles = db.Role.ToList();
-            ViewBag.Roles = new SelectList(roles, "Id", "RoleName");
 
             var viewModel = new FilterFreelancersViewModel
             {
-                Freelancers = db.FreelancerPerson.ToList()
+                Freelancers = db.FreelancerPerson.ToList() //TODO: Fortsätt här. Söka på ranking
             };
+            ViewBag.Ranking = new SelectList(viewModel.RankingList);
+            List<Role> roles = db.Role.ToList();
+            ViewBag.Roles = new SelectList(roles, "Id", "RoleName");
 
             return View(viewModel);
         }
@@ -160,6 +161,7 @@ namespace FreelancerProject.Controllers
         {
             List<Role> roles = db.Role.ToList();
             ViewBag.Roles = new SelectList(roles, "Id", "RoleName");
+            ViewBag.Ranking = new SelectList(vm.RankingList);
 
             if (vm.SearchWord != null)
             {
@@ -187,23 +189,20 @@ namespace FreelancerProject.Controllers
 
         private FilterFreelancersViewModel FindFreelancersByCompetence(FilterFreelancersViewModel vm)
         {
-            var tempList = db.Freelancer_Competence.Where(c => c.CompetenceId == vm.CompetenceId);
-
-            var newViewModel = new FilterFreelancersViewModel();
-
-            if (tempList != null)
-                newViewModel.Freelancers = new List<FreelancerPerson>();
-            foreach (var item in tempList)
+            var newViewModel = new FilterFreelancersViewModel
             {
-                newViewModel.Freelancers.Add(item.FreelancerPerson);
-            }
+                Freelancers = db.Freelancer_Competence.Where(c => c.CompetenceId == vm.CompetenceId 
+                                                             && c.Ranking >= vm.LowestRankToFilter)
+                                                             .Select(x => x.FreelancerPerson).ToList()
+                                                             //TODO: Bättre att dela upp i flera frågor? 
+            };
 
             return newViewModel;
         }
 
         public ActionResult SearchCategory(string term)
         {
-             var result = SearchFreelancers.GetStringList(term);
+            var result = SearchFreelancers.GetStringList(term);
 
             return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
