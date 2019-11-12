@@ -25,7 +25,6 @@ namespace FreelancerProject.Controllers
             ViewBag.Ranking = new SelectList(rankingList);
             ViewBag.FreelancerId = freelancerId;
 
-
             FreelancerCompetenceViewModel viewModel = new FreelancerCompetenceViewModel(freelancerId);
 
             return View(viewModel);
@@ -41,7 +40,6 @@ namespace FreelancerProject.Controllers
                 CompetenceId = viewModel.CompetenceId,
                 FreelancerId = Convert.ToInt32(viewModel.FreelancerId),
                 Ranking = viewModel.Ranking
-
             };
 
             if (ModelState.IsValid)
@@ -73,12 +71,7 @@ namespace FreelancerProject.Controllers
         }
 
         public ActionResult Edit(int id, int freelancerId)
-        {
-            //if (competenceId == null || freelancerId == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}           
-            
+        {              
             List<int> rankingList = new List<int>() { 1, 2, 3, 4, 5 };
             ViewBag.Ranking = new SelectList(rankingList);
             return View(new EditCompetenceViewModel(id, freelancerId) );
@@ -86,8 +79,7 @@ namespace FreelancerProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public ActionResult Edit(EditCompetenceViewModel viewModel)
+        public ActionResult Edit(EditCompetenceViewModel viewModel)//TODO: lägg till bind
         {     
             Freelancer_Competence updatedComptence = new Freelancer_Competence()
             {
@@ -98,7 +90,7 @@ namespace FreelancerProject.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Entry(updatedComptence).State = EntityState.Modified; //TODO: lägg till säkerhetsfunktioner
+                db.Entry(updatedComptence).State = EntityState.Modified; 
                 db.SaveChanges();
                 return RedirectToAction("Index", "FreelancerCV", new { viewModel.FreelancerId });
             }
@@ -114,7 +106,8 @@ namespace FreelancerProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Freelancer_Competence freelancer_CompetenceMatch = db.Freelancer_Competence.Where(c => c.CompetenceId == id).Where(c => c.FreelancerId == freelancerId).FirstOrDefault() ;
+            Freelancer_Competence freelancer_CompetenceMatch = db.Freelancer_Competence.Where(c => c.CompetenceId == id)
+                                                                .Where(c => c.FreelancerId == freelancerId).FirstOrDefault() ;
             if (freelancer_CompetenceMatch == null)
             {
                 return HttpNotFound();
