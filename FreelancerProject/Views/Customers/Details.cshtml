@@ -1,7 +1,7 @@
 ﻿@model FreelancerProject.Models.Customer
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Min profil";
 }
 
 <h2>@Model.Firstname @Model.Lastname</h2>
@@ -86,9 +86,6 @@
             @Html.DisplayFor(model => model.Company)
         </dd>
 
-
-
-
     </dl>
     @Html.ActionLink("Ändra mina uppgifter", "Edit", new { id = Model.Id })
 
@@ -103,37 +100,26 @@
 
         <table class="table table-hover">
             <tr>
-                <th colspan="1">
-                    Förnamn
-                </th>
-                <th>
-                    Efternamn
-                </th>
-                <th colspan="3">
-                    Kärnkompetenser
-                </th>
+                <th colspan="1">Förnamn</th>
+                <th>Efternamn </th>
+                <th colspan="3">Kärnkompetenser</th>
                 <th>E-post</th>
-                <th>
-                    Länkar
-                </th>
+                <th>Länkar </th>
                 <th>Hantera</th>
-
-                <th>
-
-                </th>
+                <th></th>
             </tr>
 
-            @foreach (var item in Model.FreelancerPerson)
+            @foreach (var person in Model.FreelancerPerson)
             {
                 <tr>
                     <td colspan="1">
-                        @Html.DisplayFor(modelItem => item.Firstname)
+                        @Html.DisplayFor(modelItem => person.Firstname)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Lastname)
+                        @Html.DisplayFor(modelItem => person.Lastname)
                     </td>
 
-                    @foreach (var info in item.OtherInfo)
+                    @foreach (var info in person.OtherInfo)
                     {
                         if (info.CoreCompetences == null)
                         {
@@ -145,13 +131,16 @@
                         }
                     }
 
-                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => person.Email)</td>
                     <td>
-                        <a href="@Url.Action("Index", "Vyforprofile", new { id = item.Id })"><i class="fas fa-external-link-alt"></i> Till profil</a>  |
-                        <a href="@Url.Action("CustomerView","FreelancerCV",new { id = item.Id })"><i class="fas fa-external-link-alt"></i> Till CV</a>
+                        <a href="@Url.Action("Index", "Vyforprofile", 
+                                new { freelancerId = person.Id })"><i class="fas fa-external-link-alt"></i> Till profil</a>  |
+                        <a href="@Url.Action("CustomerView","FreelancerCV",
+                                new { id = person.Id })"><i class="fas fa-external-link-alt"></i> Till CV</a>
                     </td>
                     <td>
-                        <a href="@Url.Action("DeleteFreelancer","FreelancerCV", new { freelancerId = item.Id, customerId = Model.Id })"><i class="far fa-trash-alt"></i> Ta bort</a>
+                        <a href="@Url.Action("DeleteFreelancer","FreelancerCV", 
+                                new { freelancerId = person.Id, customerId = Model.Id })"><i class="far fa-trash-alt"></i> Ta bort</a>
                     </td>
                 </tr>
             }
@@ -161,6 +150,5 @@
     <hr />
 }
 <p>
-
     <a href="javascript:history.back()">Tillbaka</a>
 </p>

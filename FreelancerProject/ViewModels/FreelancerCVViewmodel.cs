@@ -10,9 +10,9 @@ namespace FreelancerProject.ViewModels
     {
         private FreelancerEntities db = new FreelancerEntities();
 
+        #region Properties
         public FreelancerPerson Freelancer { get; set; }
         public Customer Customer { get; set; }
-
 
         private string birthdayString;
 
@@ -25,8 +25,7 @@ namespace FreelancerProject.ViewModels
             }
             set { birthdayString = value; }
         }
-
-
+        
         public ICollection<Languages> Languages
         {
             get { return Freelancer.Languages; }
@@ -58,7 +57,6 @@ namespace FreelancerProject.ViewModels
             }
         }
 
-
         public bool FreelancerIsSaved
         {
             get {
@@ -72,8 +70,8 @@ namespace FreelancerProject.ViewModels
                 }}
         }
 
-
-
+        #endregion
+        #region Constructors
 
         public FreelancerCVViewmodel(int? id = 1) //TODO: Ta bort hårdkodning
         {
@@ -84,5 +82,7 @@ namespace FreelancerProject.ViewModels
             Freelancer = db.FreelancerPerson.Find(freelancerId);
             Customer = db.Customer.Find(customerId); 
         }
+
+        #endregion
     }
 }

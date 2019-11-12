@@ -22,16 +22,14 @@ namespace FreelancerProject.ViewModels
             get { return competenceName; }
             set { competenceName = value; }
         }
-
-
-        public List<int> RankingList = new List<int>() { 1, 2, 3, 4, 5 };
-
+        
         public int Ranking { get; set; }
-
 
         public int CompetenceId { get; set; }
 
         public int FreelancerId { get; set; }
+
+        public List<int> RankingList = new List<int>() { 1, 2, 3, 4, 5 };
 
         public EditCompetenceViewModel(int? competenceID, int? freelanderID)
         {
