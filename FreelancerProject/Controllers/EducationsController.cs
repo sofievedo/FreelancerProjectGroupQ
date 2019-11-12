@@ -14,12 +14,6 @@ namespace FreelancerProject.Controllers
     {
         private FreelancerEntities db = new FreelancerEntities();
 
-        // GET: Educations
-        public ActionResult Index()
-        {
-            var education = db.Education.Include(e => e.FreelancerPerson);
-            return View(education.ToList());
-        }
 
         // GET: Educations/Details/5
         public ActionResult Details(int? id)
